@@ -1,0 +1,63 @@
+{
+	"serverUrl" : {
+		"ip" : "0.0.0.0", 
+		"port" : 12080
+	},
+	
+	"deployer" : {
+		"componentDeployer" : {
+			"javaClass" : "com.tibco.tge.deploy.GraphBuilderComponentDeployer",
+			"deployFolder" : "${GRAPH_BUILDER_HOME}/components" 
+		},
+		"graphModelDeployer" : {
+			"javaClass" : "com.tibco.tge.deploy.GraphModelTemplateDeployer",
+			"deployFolder" : "${GRAPH_BUILDER_HOME}/graphModels" 
+		}
+	},
+	
+	"environmentVariables" : {
+		"" : ""
+	},
+	
+	"webservices" : [
+		{
+			"id" : "resource",
+			"javaClass" : "com.tibco.tge.adapter.target.web.handler.ResourceHandlerDescriptor",
+			"configuration" : {
+				"appContextPath" : "rest",
+				"welcomeFiles" :  [
+					"index.html", "index.htm"
+				],
+				"resourceBase" : "/root"
+			}
+		},
+		{
+			"id" : "websocket",
+			"javaClass" : "com.tibco.tge.adapter.target.web.handler.WebSocketHandlerDescriptor",
+			"configuration" : {
+				"apiContextPath" : "/ws/",
+				"endPoints" : [
+					"com.tibco.tge.adapter.target.websocket.GraphServerEndpoint",
+					"com.tibco.tge.adapter.target.ws.data.GraphDataEndpoint",
+					"com.tibco.tge.adapter.target.ws.model.GraphModelEndpoint"
+				]
+			}
+		},
+		{
+			"id" : "swagger",
+			"javaClass" : "com.tibco.tge.adapter.target.web.handler.SwaggerContextHandlerDescriptor",
+			"configuration" : {
+				"appContextPath" : "rest",
+				"apiContextPath" : "/swagger",
+				"resourceBase" : "/webapp"
+			}
+		},
+		{
+			"id" : "restful",
+			"javaClass" : "com.tibco.tge.adapter.target.web.handler.RestfulServiceHandlerDescriptor",
+			"configuration" : {
+				"apiContextPath" : "/rest/*"
+			}
+		}
+	]
+}

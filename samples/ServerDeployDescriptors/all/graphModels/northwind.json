@@ -1,0 +1,160 @@
+{	
+	"graphs" : [
+		{
+			"nodes" : [
+				{
+					"nodeType" : "customer",
+					"nodeKey" : ["customerID"],
+					"allowNullKeyElement" : false,
+					"query" : "northwind.customers",
+					"columnToAttrMap" : [
+						{"column" : ["CustomerID"],  "attr" : "customerID"},
+						{"column" : ["CompanyName"], "attr" : "companyName"},
+						{"column" : ["Fax"],         "attr" : "fax"},
+						{"column" : ["Phone"],       "attr" : "phone"}
+					]
+				},
+				{
+					"nodeType" : "employee",
+					"nodeKey" : ["employeeID"],
+					"allowNullKeyElement" : false,
+					"query" : "northwind.employees",
+					"columnToAttrMap" : [
+						{"column" : ["EmployeeID"], "attr" : "employeeID"},
+						{"column" : ["FirstName"],  "attr" : "firstName"},
+						{"column" : ["LastName"],   "attr" : "lastName"},
+						{"column" : ["Title"],      "attr" : "title"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "employee",
+							"nodeKey" : ["employeeID"],
+							"allowNullKeyElement" : false,
+							"columnToAttrMap" : [
+								{"column" : ["ReportsTo"], "attr" : "employeeID"}
+							],
+							"edges" : [{
+								"edgeType" : ":REPORTS_TO",
+								"allowDuplicate" : false,
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#:REPORTS_TO"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "category",
+					"nodeKey" : ["categoryID"],
+					"allowNullKeyElement" : false,
+					"query" : "northwind.categories",
+					"columnToAttrMap" : [
+						{"column" : ["CategoryID"],   "attr" : "categoryID"},
+						{"column" : ["CategoryName"], "attr" : "categoryName"},
+						{"column" : ["Description"],  "attr" : "description"}
+					]
+				},
+				{
+					"nodeType" : "supplier",
+					"nodeKey" : ["supplierID"],
+					"allowNullKeyElement" : false,
+					"query" : "northwind.suppliers",
+					"columnToAttrMap" : [
+						{"column" : ["SupplierID"], "attr" : "supplierID"},
+						{"column" : ["CompanyName"],  "attr" : "companyName"}
+					]
+				},
+				{
+					"nodeType" : "product",
+					"nodeKey" : ["productID"],
+					"allowNullKeyElement" : false,
+					"query" : "northwind.products",
+					"columnToAttrMap" : [
+						{"column" : ["ProductID"],   "attr" : "productID"},
+						{"column" : ["ProductName"], "attr" : "productName"},
+						{"column" : ["UnitPrice"],   "attr" : "unitPrice"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "supplier",
+							"nodeKey" : ["supplierID"],
+							"allowNullKeyElement" : false,
+							"columnToAttrMap" : [
+								{"column" : ["SupplierID"], "attr" : "supplierID"}
+							],
+							"edges" : [{
+								"edgeType" : ":SUPPLIES",
+								"allowDuplicate" : false,
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#:SUPPLIES"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "category",
+							"nodeKey" : ["categoryID"],
+							"allowNullKeyElement" : false,
+							"columnToAttrMap" : [
+								{"column" : ["CategoryID"], "attr" : "categoryID"}
+							],
+							"edges" : [{
+								"edgeType" : ":PART_OF",
+								"allowDuplicate" : false,
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#:PART_OF"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "order",
+					"nodeKey" : ["orderID"],
+					"allowNullKeyElement" : false,
+					"query" : "northwind.orders",
+					"columnToAttrMap" : [
+						{"column" : ["OrderID"],  "attr" : "orderID"},
+						{"column" : ["ShipName"], "attr" : "shipName"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "employee",
+							"nodeKey" : ["employeeID"],
+							"allowNullKeyElement" : false,
+							"columnToAttrMap" : [
+								{"column" : ["EmployeeID"], "attr" : "employeeID"}
+							],
+							"edges" : [{
+								"edgeType" : ":SOLD",
+								"allowDuplicate" : false,
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#:SOLD"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "product",
+							"nodeKey" : ["productID"],
+							"allowNullKeyElement" : false,
+							"columnToAttrMap" : [
+								{"column" : ["ProductID"], "attr" : "productID"}
+							],
+							"edges" : [{
+								"edgeType" : "pu:PRODUCT",
+								"allowDuplicate" : false,
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["pu:PRODUCT"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

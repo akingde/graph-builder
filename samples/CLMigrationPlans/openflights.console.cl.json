@@ -1,0 +1,133 @@
+{	
+	"dataSources" : [
+		{
+			"id" : 	"openFlights" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+				"url" : "file:///Users/steven/Documents/GitHub/tgdb-migration-tool/graph-builder/resources/openFlights/",
+				"timestampFormat" : "MM/dd/yyyy",
+				"nullValueRepresentation" : ""
+			},			
+			"queries" : [
+				{
+					"id" : "airlines",
+					"dataSource" : "openFlights",
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "airlines.dat"
+					}
+				},
+				{
+					"id" : "airports",
+					"dataSource" : "openFlights",
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "airports.dat"
+					}
+				},
+				{
+					"id" : "routes",
+					"dataSource" : "openFlights",
+					"dataPreprocessors" : [
+						"airlineLookupPreprocessor"
+					],
+					"properties" : {
+						"filename" : "routes.dat"
+					}
+				}
+			]
+		}	
+	],
+	"dataSinks" : [
+		{
+			"id" : "console",
+			"javaClass" : "com.tibco.tge.adapter.target.DefaultSink",
+			"configuration" : {
+				"formatForJavaCalendaer" : "yyyy-MM-dd"
+			}
+		}
+	],
+	"dataPreprocessors" : [
+		{
+			"id" : "airlineLookupPreprocessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.AirlineLookupPreprocessor",
+			"configuration" : {
+				"dataFile" : "/Users/steven/Documents/GitHub/tgdb-migration-tool/graph-builder/resources/openFlights/airlines.dat"
+			}
+		}		
+	],
+	"graphs" : [
+		{
+			"id" : "openflights",
+			"nodes" : [
+				{
+					"nodeType" : "airlineType",
+					"nodeKey" : ["airlineID"],
+					"allowNullKeyElement" : false,
+					"query" : "openFlights.airlines",
+					"columnToAttrMap" : [
+						{"column" : ["#airlineType"], "attr" : "type"},
+						{"column" : ["Airline ID"], "attr" : "airlineID"},
+						{"column" : ["Name"], "attr" : "name"},
+						{"column" : ["Country"], "attr" : "country"},
+						{"column" : ["IATA"], "attr" : "iataCode"},
+						{"column" : ["ICAO"], "attr" : "icaoCode"},
+						{"column" : ["Active"], "attr" : "airlineActive"}
+					],
+					"publicNodes" : []
+				},
+				{
+					"nodeType" : "airportType",
+					"nodeKey" : ["airportID"],
+					"allowNullKeyElement" : false,
+					"query" : "openFlights.airports",
+					"columnToAttrMap" : [
+						{"column" : ["#airportType"], "attr" : "type"},
+						{"column" : ["Airport ID"], "attr" : "airportID"},
+						{"column" : ["Name"], "attr" : "name"},
+						{"column" : ["City"], "attr" : "city"},
+						{"column" : ["Country"], "attr" : "country"},
+						{"column" : ["IATA"], "attr" : "iataCode"},
+						{"column" : ["ICAO"], "attr" : "icaoCode"}
+					],
+					"publicNodes" : []
+				},
+				{
+					"nodeType" : "airportType",
+					"nodeKey" : ["airportID"],
+					"allowNullKeyElement" : false,
+					"query" : "openFlights.routes",
+					"columnToAttrMap" : [
+						{"column" : ["#airportType"], "attr" : "type"},
+						{"column" : ["Source airport"], "attr" : "iataCode"},
+						{"column" : ["Source airport ID"], "attr" : "airportID"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "airportType",
+							"nodeKey" : ["airportID"],
+							"columnToAttrMap" : [
+								{"column" : ["#airportType"], "attr" : "type"},
+								{"column" : ["Destination airport"], "attr" : "iataCode"},
+								{"column" : ["Destination airport ID"], "attr" : "airportID"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"allowMultiple" : true,
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#routeType"], "attr" : "relation"},
+									{"column" : ["Airline ID"], "attr" : "airlineID"},
+									{"column" : ["Codeshare"], "attr" : "name"},
+									{"column" : ["Airline"], "attr" : "iataCode"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

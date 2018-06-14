@@ -1,0 +1,153 @@
+{	
+	"dataSources" : [
+		{
+			"id" : 	"houseMember" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+				"url" : "file:///Users/steven/Documents/GitHub/tgdb-migration-tool/graph-builder/resources/houseMember/",
+				"timestampFormat" : "MM/dd/yyyy",
+				"nullValueRepresentation" : "null"
+			},
+			"queries" : [
+				{
+					"id" : "member",
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "houseMemberData.csv",
+						"timestampFormat" : "dd MMM yyyy",
+						"schema.memberName" : "string",
+						"schema.crownName" : "string",
+						"schema.houseHead" : "boolean",
+						"schema.yearBorn" : "int",
+						"schema.yearDied" : "int",
+						"schema.reignStart" : "timestamp",
+						"schema.reignEnd" : "timestamp",
+						"schema.crownTitle" : "string",
+						"schema.relType" : "string"
+					}
+				},
+				{
+					"id" : "relation",
+					"dataSource" : "houseMember",
+					"dataPreprocessors" : [
+						"regexStringReplacingDataProcessor"
+					],
+					"properties" : {
+						"filename" : "houseRelationData.csv",
+						"schema.fromMemberName" : "string",
+						"schema.toMemberName" : "string",
+						"schema.relationType" : "string"
+					}
+				}
+			]
+		}
+	],
+	"dataSinks" : [
+		{
+			"id" : "tgdbImport",
+			"javaClass" : "com.tibco.tge.adapter.target.tgdbimport.TGDBImportCSV",
+			"configuration" : {
+				"outputFolder" : "/Users/steven/Documents/GraphBuilderWorking/tgdbImport",
+				"tgdbHome" : "/Users/steven/Applications/tgdb/1.1",
+				"importCommand" : "./tgdb-admin --url tcp://localhost:8222 --uid scott --pwd scott import %s",
+				"attributeTypes" : [
+					"crownName = @type:string",
+					"yearBorn = @type:int",
+					"reignEnd = @type:date",
+					"yearDied = @type:int",
+					"crownTitle = @type:string",
+					"memberName = @type:string",
+					"reignStart = @type:date",
+					"relType = @type:string",
+					"houseHead = @type:boolean",
+					"label = @type:string",
+					"type = @type:string",
+					"relation =@type:string",
+					"airlineID = @type:string",
+					"airportID = @type:string",
+					"name = @type:string",
+					"iataCode = @type:string",
+					"icaoCode = @type:string",
+					"country = @type:string",
+					"airlineActive = @type:boolean",
+					"city = @type:string"
+				]
+			}
+		}
+	],
+	"dataPreprocessors" : [
+		{
+			"id" : "regexStringReplacingDataProcessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.RegexStringReplacingDataProcessor",
+			"configuration" : {
+				"replacements" : { 
+					"*" : {"targetRegex" : "[^a-zA-Z0-9W+]", "replacement" : "_"}
+				}
+			}
+		},
+		{
+			"id" : "charReplacingDataPreprocessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.CharReplacingDataPreprocessor",
+			"configuration" : {
+				"replacements" : {
+					"memberName" : { " " : "_", "\\" : "_" }
+				}
+			}
+		}		
+	],
+	"graphs" : [
+		{
+			"id" : "houseMember",
+			"nodes" : [
+				{
+					"nodeType" : "houseMemberType",
+					"nodeKey" : ["memberName"],
+					"allowNullKeyElement" : false,
+					"query" : "houseMember.member",
+					"columnToAttrMap" : [
+						{"column" : ["#houseMemberType"], "attr" : "type"},
+						{"column" : ["memberName"], "attr" : "memberName"},
+						{"column" : ["crownName"], "attr" : "crownName"},
+						{"column" : ["houseHead"], "attr" : "houseHead"},
+						{"column" : ["yearBorn"], "attr" : "yearBorn"},
+						{"column" : ["yearDied"], "attr" : "yearDied"},
+						{"column" : ["reignStart"], "attr" : "reignStart", "converter" : "TimestameToCalendar"},
+						{"column" : ["reignEnd"], "attr" : "reignEnd", "converter" : "TimestameToCalendar"},
+						{"column" : ["crownTitle"], "attr" : "crownTitle"},
+						{"column" : ["memberName"], "attr" : "label", "converter" : "BuildLabel"}
+					]
+				},			    
+				{
+					"nodeType" : "houseMemberType",
+					"nodeKey" : ["memberName"],
+					"allowNullKeyElement" : false,
+					"query" : "houseMember.relation",
+					"columnToAttrMap" : [
+						{"column" : ["#houseMemberType"], "attr" : "type"},
+						{"column" : ["fromMemberName"], "attr" : "memberName"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "houseMemberType",
+							"nodeKey" : ["memberName"],
+							"columnToAttrMap" : [
+								{"column" : ["#houseMemberType"], "attr" : "type"},
+								{"column" : ["toMemberName"], "attr" : "memberName"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["relationType"], "attr" : "relType"},
+									{"column" : ["relationType"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

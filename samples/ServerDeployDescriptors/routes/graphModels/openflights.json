@@ -1,0 +1,90 @@
+{	
+	"graphs" : [
+		{
+			"id" : "routes",
+			"nodes" : [
+				{
+					"nodeType" : "airportType",
+					"nodeKey" : ["airportID"],
+					"allowNullKeyElement" : false,
+					"query" : "openFlights.airports",
+					"columnToAttrMap" : [
+						{"column" : ["#airportType"], "attr" : "type"},
+						{"column" : ["Airport ID"], "attr" : "airportID"},
+						{"column" : ["Name"], "attr" : "name"},
+						{"column" : ["City"], "attr" : "city"},
+						{"column" : ["Country"], "attr" : "country"},
+						{"column" : ["IATA"], "attr" : "IATA"},
+						{"column" : ["ICAO"], "attr" : "ICAO"},
+						{"column" : ["Latitude"], "attr" : "latitude"},
+						{"column" : ["Longitude"], "attr" : "longitude"},
+						{"column" : ["Altitude"], "attr" : "altitude"},
+						{"column" : ["Timezone"], "attr" : "timezone"},
+						{"column" : ["DST"], "attr" : "DST"},
+						{"column" : ["Tz database time zone"], "attr" : "Tz"},
+						{"column" : ["Type"], "attr" : "dataType"},
+						{"column" : ["Source"], "attr" : "source"}
+					],
+					"publicNodes" : []
+				},
+				{
+					"nodeType" : "airportType",
+					"nodeKey" : ["airportID"],
+					"allowNullKeyElement" : false,
+					"query" : "openFlights.routes",
+					"columnToAttrMap" : [
+						{"column" : ["#airportType"], "attr" : "type"},
+						{"column" : ["Source airport"], "attr" : "IATA_ICAO"},
+						{"column" : ["Source airport ID"], "attr" : "airportID"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "flightType",
+							"nodeKey" : ["airlineID", "sourceAirportID", "destinationAirportID"],
+							"query" : "openFlights.airlines",
+							"columnToAttrMap" : [
+								{"column" : ["#flightType"], "attr" : "type"},
+								{"column" : ["Airline ID"], "attr" : "airlineID"},
+								{"column" : ["Airline"], "attr" : "airlineCode"},
+								{"column" : ["IATA"], "attr" : "IATA"},
+								{"column" : ["ICAO"], "attr" : "ICAO"},
+								{"column" : ["Source airport ID"], "attr" : "sourceAirportID"},
+								{"column" : ["sourceIATA"], "attr" : "sourceIATA"},
+								{"column" : ["Destination airport ID"], "attr" : "destinationAirportID"},
+								{"column" : ["destinationIATA"], "attr" : "destinationIATA"},
+								{"column" : ["Codeshare"], "attr" : "codeshare"},
+								{"column" : ["Stops"], "attr" : "stops"},
+								{"column" : ["Equipment"], "attr" : "equipment"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"allowMultiple" : true,
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#host"], "attr" : "relation"}
+								]
+							}]
+						},	    
+						{
+							"nodeType" : "airportType",
+							"nodeKey" : ["airportID"],
+							"columnToAttrMap" : [
+								{"column" : ["#airportType"], "attr" : "type"},
+								{"column" : ["Destination airport"], "attr" : "IATA_ICAO"},
+								{"column" : ["Destination airport ID"], "attr" : "airportID"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"allowMultiple" : true,
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#route"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

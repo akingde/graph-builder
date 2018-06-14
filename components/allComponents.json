@@ -1,0 +1,596 @@
+{
+	"dataSources" : [
+    {
+			"id" : 	"donors" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+            	"url":"file:///Users/dgraph/donors/",
+				"timestampFormat" : "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+				"nullValueRepresentation" : ""
+			},
+			"queries" : [
+
+				{
+					"id" : "donors",
+					"dataSource" : "donors",
+					"dataUniqueId" : ["Donor ID"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "DonorsR.csv",
+						"timestampFormat" : "MM/dd/yyyy"
+					}
+				},
+				{
+					"id" : "schools",
+					"dataSource" : "donors",
+					"dataUniqueId" : ["School ID"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "SchoolsR.csv",
+						"timestampFormat" : "yyyy-MM-dd",
+						"schema.creationTimestamp" : "timestamp"
+					}
+				},
+				{
+					"id" : "donations",
+					"dataSource" : "donations",
+					"dataUniqueId" : ["Donation ID"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "DonationsR.csv",
+						"timestampFormat" : "yyyy-MM-dd",
+						"schema.Donation Received Date" : "timestamp",
+						"schema.Donation Amount" : "double"
+
+					}
+				},
+				{
+					"id" : "projects",
+					"dataSource" : "projects",
+					"dataUniqueId" : ["Project ID"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "ProjectsR.csv",
+						"timestampFormat" : "yyyy-MM-dd",
+						"schema.creationTimestamp" : "timestamp",
+						"schema.Project Cost" : "double",
+						"schema.Project Posted Date" : "timestamp",
+						"schema.Project Expiration Date" : "timestamp"
+
+					}
+				},
+				{
+					"id" : "resources",
+					"dataSource" : "resources",
+					"dataUniqueId" : ["Project ID","Resource Item Name"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "ResourcesR.csv",
+						"timestampFormat" : "yyyy-MM-dd",
+						"schema.creationTimestamp" : "timestamp",
+						"schema.Resource Unit Price" : "double",
+						"schema.Resource Quantity" : "double"
+
+					}
+				}
+
+			]
+		},
+		{
+			"id" : 	"liveapps" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+            	"url":"file://${GRAPH_BUILDER_HOME}/resources/liveapps/",
+				"timestampFormat" : "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+				"nullValueRepresentation" : ""
+			},
+			"queries" : [
+
+				{
+					"id" : "casetypes",
+					"dataSource" : "liveapps",
+					"dataUniqueId" : ["applicationId"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "caseTypes.csv",
+						"timestampFormat" : "MM/dd/yyyy"
+					}
+				},
+				{
+					"id" : "cases",
+					"dataSource" : "liveapps",
+					"dataUniqueId" : ["caseReference"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "cases.csv",
+						"timestampFormat" : "yyyy-MM-dd",
+						"schema.creationTimestamp" : "timestamp"
+					}
+				},
+				{
+					"id" : "casesdata",
+					"dataSource" : "liveapps",
+					"dataUniqueId" : ["label","value"],
+					"foreignKeys" : {
+
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "casesdata.csv",
+						"timestampFormat" : "MM/dd/yyyy"
+					}
+				}
+			]
+		},
+		{
+			"id" : 	"salesForce" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+            	"url":"file://${GRAPH_BUILDER_HOME}/resources/convUI/",
+				"timestampFormat" : "MM/dd/yyyy",
+				"nullValueRepresentation" : ""
+			},
+			"queries" : [
+
+				{
+					"id" : "rawlead",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Lead ID"],
+					"foreignKeys" : {
+						"salesForce.state" : ["Stage"],
+						"salesForce.user" : ["BDE"]
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "ActiveLeads.csv",
+						"timestampFormat" : "MM/dd/yyyy",
+						"schema.Create Date" : "timestamp",
+						"schema.MCL Date" : "timestamp",
+						"schema.MEL Date" : "timestamp",
+						"schema.MQL Date Original" : "timestamp",
+						"schema.MQL Date Assigned" : "timestamp",
+						"schema.SAL Date" : "timestamp",
+						"schema.SQL Date" : "timestamp"
+					}
+				},
+
+				{
+					"id" : "rawdeal",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Opportunity ID"],
+					"foreignKeys" : {
+						"salesForce.state" : ["Stage"],
+						"salesForce.salesrep" : ["Opportunity Owner"],
+						"salesForce.lead" : ["Lead ID"]
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "Deals.csv",
+						"timestampFormat" : "MM/dd/yy",
+						"schema.Created Date" : "timestamp",
+						"schema.Close Date" : "timestamp"
+					}
+				},
+				{
+					"id" : "dealsproducts",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Opportunity ID","Product Code"],
+					"foreignKeys" : {
+
+						"salesForce.rawdeal" : ["Opportunity ID"]
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "DealsProducts.csv",
+						"timestampFormat" : "MM/dd/yy",
+						"schema.Total Price (converted)" : "double"
+					}
+				},
+				{
+					"id" : "opp",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Opportunity ID"],
+					"foreignKeys" : {
+						"salesForce.state" : ["Stage"],
+						"salesForce.salesrep" : ["Opportunity Owner"],
+						"salesForce.lead" : ["Lead ID"]
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "Opportunities.csv",
+						"timestampFormat" : "MM/dd/yyyy",
+						"schema.Created Date" : "timestamp",
+						"schema2.License (converted)" : "double"
+					}
+				},
+				{
+					"id" : "campaign",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Campaign ID"],
+					"foreignKeys" : {
+						"salesForce.user" : ["Owner"]
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "Campaigns.csv",
+						"timestampFormat" : "MM/dd/yyyy",
+						"schema.Start Date" : "timestamp",
+						"schema.End Date" : "timestamp",
+						"schema.Budgeted Cost in Campaign (converted)" : "double"
+					}
+				},
+				{
+					"id" : "salesrep",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Full Name"],
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "SalesUsers.csv"
+					}
+				},
+				{
+					"id" : "user",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Full Name"],
+					"foreignKeys" : {
+						"salesForce.salesrep" : ["Manager ID"],
+						"oracle.salesrep" : ["MANAGERNAME"],
+						"mysql.salesrep" : ["ManagerName"]
+					},
+					"dataPreprocessors" : [
+						"charReplacingDataPreprocessor"
+					],
+					"properties" : {
+						"filename" : "MarketingUsers.csv"
+					}
+				},
+				{
+					"id" : "state",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["StateName"],
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "CleanStates.csv",
+						"schema2.Order" : "double"
+					}
+				},
+				{
+					"id" : "nflbasicStats",
+					"dataSource" : "salesForce",
+					"dataUniqueId" : ["Player Id"],
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "Basic_Stats.csv"
+					}
+				}
+			]
+		},
+		{
+			"id" : "convUIDynamicData",
+			"javaClass" : "com.tibco.tge.adapter.source.datagenerator.DataGeneratorDAO",
+			"configuration" : {
+				"inputDateFormat" : "MM/dd/yyyy",
+				"testMode" : "false"
+			},
+			"queries" : [
+				{
+					"id" : "timeTreeFY",
+					"dataUniqueId" : ["DateName"],
+					"dataSource" : "convUIDynamicData",
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"dataGenerator" : "com.tibco.tge.adapter.source.datagenerator.GenerateTimeTreeFYLongName",
+						"dateIDFormatBak" : "EEE'_'MMM'_'dd'_00_00_00_'z'_'yyyy",
+						"dateIDFormat" : "yyyy'-'MM'-'dd'T00:00:00-08:00'",
+						"fromDate" : "1/1/2011",
+						"toDate" : "12/31/2018"
+					}
+				}
+			]
+		}
+	],
+
+	"dataSinks" : [
+		{
+			"id" : "neoRaph",
+			"javaClass" : "com.tibco.tge.adapter.target.neo4jimport.Neo4jImport",
+			"configuration" : {
+				"database" : "graph.db",
+				"importFileFolder" : "/Users/raph/temp/graphbuilder/import",
+							"executionFolder" : "/Users/raph/graph-builder/scripts/neo4j",
+				"importCommand" : "import.sh --mode=csv --database=$DATABASE_ID $FILES",
+				"ignoredNodeAttributes" : {
+				},
+				"ignoredEdgeAttributes" : {
+				}
+			}
+		},
+		{
+			"id" : "dgraph",
+			"javaClass" : "com.tibco.tge.adapter.target.dgraphimport.DGraphImportRDF",
+			"configuration" : {
+            	"dgrapgWorkingFolder_bak":"/Users/raph/temp/dgraph2",
+            	"dgrapgWorkingFolder":"/Users/gallardo/Documents/ConvUI/Data/graphbuilder/wf",
+            	"importFileFolder_bak":"/Users/raph/temp/work",
+            	"importFileFolder":"/Users/gallardo/Documents/ConvUI/Data/graphbuilder/import",
+            	"executionFolder_bak" : "/Users/raph/seg-git/conversationalgraph/data-service-v2/scripts",
+           	"executionFolder_bak2" : "/Users/steven/Documents/GitHub/tgdb-migration-tool/TGBuilder/scripts/DGraph",
+		"recycleCommand" : "recycleDgraph.sh",
+            	"importCommand" :"bulkimport.sh $DATA_FILE_PATH $SCHEMA_FILE_PATH",
+				"charReplacement" : {
+					"targetRegex" : "[^A-Za-z0-9]",
+					"replacement" : "_"
+				}
+			}
+		},
+		{
+			"id" : "dgraphRaph",
+			"javaClass" : "com.tibco.tge.adapter.target.dgraphimport.DGraphImportRDF",
+			"configuration" : {
+            	"dgrapgWorkingFolder":"/Users/raph/temp/graphbuilder",
+            	"importFileFolder":"/Users/raph/temp/graphbuilder/import2",
+            	"executionFolder_bak" : "/Users/raph/graph-builder/scripts/DGraph",
+		         "recycleCommand" : "recycleDgraph.sh",
+            	"importCommand" :"bulkimport.sh $DATA_FILE_PATH $SCHEMA_FILE_PATH",
+				"charReplacement" : {
+					"targetRegex" : "[^A-Za-z0-9]",
+					"replacement" : "_"
+				}
+			}
+		},
+		{
+			"id" : "dgraphRaphLiveApps",
+			"javaClass" : "com.tibco.tge.adapter.target.dgraphimport.DGraphImportRDF",
+			"configuration" : {
+							"dgrapgWorkingFolder":"/Users/raph/temp/graphbuilder/liveapps",
+							"importFileFolder":"/Users/raph/temp/graphbuilder/liveapps/import",
+							"executionFolder_bak" : "/Users/raph/graph-builder/scripts/DGraph",
+						 "recycleCommand" : "recycleDgraph.sh",
+							"importCommand" :"bulkimport.sh $DATA_FILE_PATH $SCHEMA_FILE_PATH",
+				"charReplacement" : {
+					"targetRegex" : "[^A-Za-z0-9]",
+					"replacement" : "_"
+				}
+			}
+		},
+		{
+			"id" : "neo4jImport",
+			"javaClass" : "com.tibco.tge.adapter.target.neo4jimport.Neo4jImport",
+			"configuration" : {
+				"database" : "graph.db",
+				"importFileFolder" : "/Users/steven/Documents/GraphBuilderWorking/neo4jNorthWindImport",
+           		"executionFolder" : "/Users/steven/Documents/GitHub/tgdb-migration-tool/TGBuilder/scripts/neo4j",
+				"importCommand" : "import.sh --mode=csv --database=$DATABASE_ID $FILES",
+				"ignoredNodeAttributes" : {
+				},
+				"ignoredEdgeAttributes" : {
+				}
+			}
+		},
+		{
+			"id" : "tgdbImport",
+			"javaClass" : "com.tibco.tge.adapter.target.tgdbimport.TGDBImportCSV",
+			"configuration" : {
+				"hardRecycle" : "no",
+				"tgdbHome" : "/Users/steven/Applications/tgdb/1.1",
+				"outputFolder" : "/Users/steven/Documents/GraphBuilderWorking/gtfImport",
+				"recycleCommand" : "%s/recycle.sh",
+				"importCommand" : "./tgdb-admin --url tcp://localhost:8222 --uid scott --pwd scott import %s",
+				"attributeTypes" : [
+					"crownName = @type:string",
+					"yearBorn = @type:int",
+					"reignEnd = @type:date",
+					"yearDied = @type:int",
+					"crownTitle = @type:string",
+					"memberName = @type:string",
+					"reignStart = @type:date",
+					"relType = @type:string",
+					"houseHead = @type:boolean",
+					"label = @type:string",
+					"type = @type:string",
+					"relation =@type:string",
+					"airlineID = @type:string",
+					"airportID = @type:string",
+					"name = @type:string",
+					"iataCode = @type:string",
+					"icaoCode = @type:string",
+					"country = @type:string",
+					"airlineActive = @type:boolean",
+					"city = @type:string"
+				]
+			}
+		},
+		{
+			"id" : "websocket",
+			"javaClass" : "com.tibco.tge.adapter.target.websocket.WebSocket",
+			"autoPublish" : "true",
+			"configuration" : {
+				"eventByEvent" : "false",
+				"publishPeriodMilliseconds" : "30000"
+			}
+		},
+		{
+			"id" : "Default",
+			"javaClass" : "com.tibco.tge.adapter.target.DefaultSink",
+			"configuration" : {
+				"outputFolder" : "./resources/demoberlin/output",
+				"attributeTypes" : [
+					"uuid     = @type:string"
+				]
+			}
+		}
+	],
+
+	"dataPreprocessors" : [
+		{
+			"id":"regexStringReplacingDataProcessor",
+			"javaClass":"com.tibco.tge.builder.preprocessors.RegexStringReplacingDataProcessor",
+			"configuration" : {
+				"replacements" : {
+					"*" : {"targetRegex" : "[^a-zA-Z0-9W+]", "replacement" : "_"}
+				}
+			}
+		},
+		{
+			"id" : "charReplacingDataPreprocessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.CharReplacingDataPreprocessor",
+			"configuration" : {
+				"replacements" : {
+					"*" : {  "\\" : "_", "\"" : " ", "\n": " ", "\t": " "}
+				}
+			}
+		}
+	],
+
+	"graphs" : [
+		{
+			"id" : "convUI",
+			"schema" : {
+				"fields" : [
+					{"name" : "uuid"                 , "type" : "string"  , "index"      : ["exact", "term"]},
+					{"name" : "type"                 , "type" : "string"  , "index"      : ["exact"], "extraFlags" : ["count"]},
+					{"name" : "attr"                 , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "label"                , "type" : "string"  , "index"      : ["hash"]},
+					{"name" : "value"                , "type" : "string"  , "index"      : ["fulltext"]},
+					{"name" : "datevalue"            , "type" : "dateTime", "index"      : ["day"]},
+					{"name" : "eventname"            , "type" : "string"  , "index"      : ["exact"]},
+					{"name" : "event"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "opportunity_flag"     ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_flag"            , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "amount"               , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "budget"               , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "order"                , "type" : "int"     , "index"      : ["int"]},
+					{"name" : "lead_region"          , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "lead_industry"        , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "lead_country"         , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "lead_campaign"         , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "source"               , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "opportunity_region"   , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "opportunity_industry" , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "opportunity_country"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "opportunity_businessunit"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "opportunity_product"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_region"   , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_industry" , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_country"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_businessunit"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_product"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_revenustream"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "deal_line"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "line_product"  , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "owns_lead"                 , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "owns_deal"                 , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "owns_campaign"        , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "owns_opportunity"                 , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "manager"              , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "stage"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "statehistory"         , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "stagein"              , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "stageout"             , "type" : "uid"     , "extraFlags" : ["reverse"]},
+					{"name" : "converted_to"         , "type" : "uid"     , "extraFlags" : ["reverse"]},
+					{"name" : "license"              , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "equipment"              , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "subscription"              , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "revenu"              , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "consulting"              , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "player"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "team"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "college"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "play"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "child"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "fchild"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]}
+				]
+			}
+		},
+		{
+			"id" : "donors",
+			"schema" : {
+				"fields" : [
+					{"name" : "uuid"                 , "type" : "string"  , "index"      : ["hash"]},
+					{"name" : "type"                 , "type" : "string"  , "index"      : ["exact"], "extraFlags" : ["count"]},
+					{"name" : "attr"                 , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "label"                , "type" : "string"  , "index"      : ["hash"]},
+					{"name" : "value"                , "type" : "string"  , "index"      : ["fulltext"]},
+					{"name" : "datevalue"            , "type" : "dateTime", "index"      : ["day"]},
+					{"name" : "eventname"            , "type" : "string"  , "index"      : ["exact"]},
+					{"name" : "event"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "child"                , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "fchild"               , "type" : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "donor_flag"           ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "project_school"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "project_status"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "school_state"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "school_city"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "school_county"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "school_district"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "school_zipcode"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "school_type"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "project_type"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "donation_project"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "donor_donation"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "amount"               , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "cost"               , "type" : "float"   , "index"		 : ["float"]},
+					{"name" : "project_resource"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "resource_item"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]},
+					{"name" : "resource_vendor"       ,"type"  : "uid"     , "extraFlags" : ["reverse", "count"]}
+
+				]
+			}
+		},
+		{
+			"id" : "Default"
+		}
+	]
+}

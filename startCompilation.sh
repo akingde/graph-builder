@@ -1,0 +1,1 @@
+javac -cp ./exeJar/TGBuilder-0.9.2.jar -d ./bin ./src/com/tibco/tge/adapter/source/datagenerator/*.java

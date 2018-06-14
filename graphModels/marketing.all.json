@@ -1,0 +1,2788 @@
+{
+    "graphs": [{
+        "nodes": [
+            {
+                "publicNodes": [],
+                "query": "salesForce.state",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#state"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typestate"
+                    },
+                    {
+                        "column": ["StateName"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "column": ["StateName"],
+                        "attr": "label"
+                    },
+                    {
+                        "converter": "LowerCase",
+                        "column": ["StateName"],
+                        "attr": "value"
+                    },
+                    {
+                        "column": ["Order"],
+                        "attr": "order"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "State",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "statehistory",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#statehistory"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["Create Date"],
+                                    "attr": "since"
+                                },
+                                {
+                                    "column": ["#2999-01-01"],
+                                    "attr": "to"
+                                },
+                                {
+                                    "column": ["#active"],
+                                    "attr": "groupname"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#ACTIVE"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "stage",
+                            "columnToAttrMap": [{
+                                "column": ["#stage"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Lead Stage"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "data.get(\"MEL Date\")!=null",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["MCL Date"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["#2999-01-01"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            },
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "data.get(\"MEL Date\")==null",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["MCL Date"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["MEL Date"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            }
+                        ],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MCL"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "(data.get(\"MQL Date Assigned\")!=null)",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["MEL Date"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["#2999-01-01"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            },
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "(data.get(\"MQL Date Assigned\")==null)",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["MEL Date"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["MQL Date Assigned"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            }
+                        ],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MEL"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "(data.get(\"SAL Date\")!=null)",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["MQL Date Assigned"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["#2999-01-01"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            },
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "(data.get(\"SAL Date\")==null)",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["MQL Date Assigned"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["SAL Date"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            }
+                        ],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MQL"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "data.get(\"SQL Date\")!=null",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["SAL Date"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["#2999-01-01"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            },
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "statehistory",
+                                "skipCondition": "data.get(\"SQL Date\")==null",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#statehistory"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["SAL Date"],
+                                        "attr": "since"
+                                    },
+                                    {
+                                        "column": ["SQL Date"],
+                                        "attr": "to"
+                                    },
+                                    {
+                                        "column": ["#stage"],
+                                        "attr": "groupname"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            }
+                        ],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#SAL"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "statehistory",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#statehistory"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["SQL Date"],
+                                    "attr": "since"
+                                },
+                                {
+                                    "column": ["#2999-01-01"],
+                                    "attr": "to"
+                                },
+                                {
+                                    "column": ["#stage"],
+                                    "attr": "groupname"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#SQL"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "stagein",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#stagein"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["#MCL"],
+                                    "attr": "state"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttday"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["MCL Date"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["MCL Date"],
+                                "attr": "datevalue"
+                            }
+                        ],
+                        "nodeKey": ["label"],
+                        "nodeType": "Day"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "event",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#event"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["#created"],
+                                    "attr": "eventname"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttday"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Create Date"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["Create Date"],
+                                "attr": "datevalue"
+                            }
+                        ],
+                        "nodeKey": ["label"],
+                        "nodeType": "Day"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "stagein",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#stagein"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["#MEL"],
+                                        "attr": "state"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            },
+                            {
+                                "allowDuplicate": true,
+                                "edgeType": "stageout",
+                                "columnToAttrMap": [
+                                    {
+                                        "column": ["#stageout"],
+                                        "attr": "relation"
+                                    },
+                                    {
+                                        "column": ["#MCL"],
+                                        "attr": "state"
+                                    }
+                                ],
+                                "perminant": true,
+                                "direction": 1
+                            }
+                        ],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttday"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["MEL Date"],
+                                "attr": "datevalue"
+                            },
+                            {
+                                "column": ["MEL Date"],
+                                "attr": "label"
+                            }
+                        ],
+                        "nodeKey": ["label"],
+                        "nodeType": "Day"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "attr",
+                            "columnToAttrMap": [{
+                                "column": ["#attr"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#attribute"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#company"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Company / Account"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeattribute"
+                            }
+                        ],
+                        "nodeKey": [
+                            "label",
+                            "value"
+                        ],
+                        "nodeType": "attribute"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "attr",
+                            "columnToAttrMap": [{
+                                "column": ["#attr"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#attribute"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#Status"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Status"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeattribute"
+                            }
+                        ],
+                        "nodeKey": [
+                            "label",
+                            "value"
+                        ],
+                        "nodeType": "attribute"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "lead_industry",
+                            "columnToAttrMap": [{
+                                "column": ["#lead_industry"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#industry"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Industry"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Industry"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Industry"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeindustry"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Industry"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "lead_businessunit",
+                            "columnToAttrMap": [{
+                                "column": ["#lead_businessunit"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#businessunit"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Marketing Business Unit"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Marketing Business Unit"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Marketing Business Unit"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebusinessunit"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BusinessUnit"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "lead_source",
+                            "columnToAttrMap": [{
+                                "column": ["#source"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#source"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Lead Source"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Lead Source"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Lead Source"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typesource"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Source"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "lead_country",
+                            "columnToAttrMap": [{
+                                "column": ["#lead_country"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#country"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Country"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Country"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Country"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typecountry"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Country"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "lead_region",
+                            "columnToAttrMap": [{
+                                "column": ["#lead_region"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#region"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["CountryCode Region"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["CountryCode Region"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["CountryCode Region"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeregion"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Region"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "owns_lead",
+                            "columnToAttrMap": [{
+                                "column": ["#owns_lead"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#bde"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["BDE Name"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["BDE Name"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebde"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BDE"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "lead_campaign",
+                            "columnToAttrMap": [{
+                                "column": ["#lead_campaign"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#campaign"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Campaign Name"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Campaign Name"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typecampaign"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "campaign"
+                    }
+                ],
+                "query": "salesForce.rawlead",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#lead"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typelead"
+                    },
+                    {
+                        "column": ["Lead ID"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "column": [
+                            "First Name",
+                            "# ",
+                            "Last Name"
+                        ],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["Email"],
+                        "attr": "Email"
+                    },
+                    {
+                        "column": ["First Name"],
+                        "attr": "first_name"
+                    },
+                    {
+                        "column": ["Last Name"],
+                        "attr": "last_name"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "lead",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "attr",
+                            "columnToAttrMap": [{
+                                "column": ["#attr"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#attribute"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#FirstName"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["First Name"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeattribute"
+                            }
+                        ],
+                        "nodeKey": [
+                            "label",
+                            "value"
+                        ],
+                        "nodeType": "attribute"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "attr",
+                            "columnToAttrMap": [{
+                                "column": ["#attr"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#attribute"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#LastName"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Last Name"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeattribute"
+                            }
+                        ],
+                        "nodeKey": [
+                            "label",
+                            "value"
+                        ],
+                        "nodeType": "attribute"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "manager",
+                            "columnToAttrMap": [{
+                                "column": ["#manager"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#bde"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Manager Name"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Manager Name"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebde"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BDE"
+                    }
+                ],
+                "query": "salesForce.user",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#bde"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typebde"
+                    },
+                    {
+                        "converter": "LowerCase",
+                        "column": ["Full Name"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "column": ["Employee Number"],
+                        "attr": "employeeNumber"
+                    },
+                    {
+                        "column": ["Full Name"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["Email"],
+                        "attr": "email"
+                    },
+                    {
+                        "column": ["Alias"],
+                        "attr": "alias"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "BDE",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "status",
+                            "columnToAttrMap": [{
+                                "column": ["#status"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Campaign Status"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Campaign Status"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Campaign Status"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "event",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#event"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["#created"],
+                                    "attr": "eventname"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttday"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Start Date"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["Start Date"],
+                                "attr": "datevalue"
+                            }
+                        ],
+                        "nodeKey": ["label"],
+                        "nodeType": "Day"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "owns_campaign",
+                            "columnToAttrMap": [{
+                                "column": ["#owns_campaign"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#bde"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Owner"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Owner"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebde"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BDE"
+                    }
+                ],
+                "query": "salesForce.campaign",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#campaign"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typecampaign"
+                    },
+                    {
+                        "converter": "LowerCase",
+                        "column": ["Campaign ID"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "column": ["Campaign Name"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["Budgeted Cost in Campaign (converted)"],
+                        "attr": "budget"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "campaign",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "stage",
+                            "columnToAttrMap": [{
+                                "column": ["#stage"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Stage"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Stage"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Stage"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "converted_to",
+                            "columnToAttrMap": [{
+                                "column": ["#converted_to"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#lead"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Lead ID"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typelead"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "lead"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "event",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#event"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["#closed"],
+                                    "attr": "eventname"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttday"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Close Date"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["Close Date"],
+                                "attr": "datevalue"
+                            }
+                        ],
+                        "nodeKey": ["label"],
+                        "nodeType": "Day"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_industry",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_industry"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#industry"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Industry"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Industry"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Industry"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeindustry"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Industry"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_businessunit",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_businessunit"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#businessunit"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Business Unit"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Business Unit"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Business Unit"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebusinessunit"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BusinessUnit"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_businessunit",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_businessunit"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#businessunit"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["#productUNKNOWN"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#unknown"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#unknown"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebusinessunit"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BusinessUnit"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_country",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_country"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#country"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Billing Country"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Billing Country"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Billing Country"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typecountry"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Country"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_region",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_region"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#region"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Account Geographic Region"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Account Geographic Region"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Account Geographic Region"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeregion"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Region"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_revenustream",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_revenustream"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#revenustream"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#license"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#license"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#license"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typerevenustream"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "RevenuStream"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_revenustream",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_revenustream"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#revenustream"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#subscription"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#subscription"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#subscription"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typerevenustream"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "RevenuStream"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_revenustream",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_revenustream"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#revenustream"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#consulting"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#consulting"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#consulting"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typerevenustream"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "RevenuStream"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_revenustream",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_revenustream"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#revenustream"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#equipment"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#equipment"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#equipment"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typerevenustream"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "RevenuStream"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_revenustream",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_revenustream"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#revenustream"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#other"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#other"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#other"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typerevenustream"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "RevenuStream"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "owns_deal",
+                            "columnToAttrMap": [{
+                                "column": ["#owns_deal"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#salesrep"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Opportunity Owner"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Opportunity Owner"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typesalesrep"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "salesrep"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#new logo"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#new logo"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#newlogo"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MOB"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#MOB"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#mob"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#marketing contribution"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MIB"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#MIB"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#mib"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#marketing contribution"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    }
+                ],
+                "query": "salesForce.rawdeal",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#deal"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typedeal"
+                    },
+                    {
+                        "column": ["Opportunity ID"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "converter": "LowerCase",
+                        "column": ["Opportunity Name"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["License (converted)"],
+                        "attr": "license"
+                    },
+                    {
+                        "column": ["Subscription ACV (converted)"],
+                        "attr": "subscription"
+                    },
+                    {
+                        "column": ["Consulting (converted)"],
+                        "attr": "consulting"
+                    },
+                    {
+                        "column": ["Equipment (converted)"],
+                        "attr": "equipment"
+                    },
+                    {
+                        "column": ["Total Fees Due (converted)"],
+                        "attr": "revenu"
+                    },
+                    {
+                        "column": ["Primary Product Family"],
+                        "attr": "primary_product"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "deal",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "attr",
+                            "columnToAttrMap": [{
+                                "column": ["#attr"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#attribute"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#FirstName"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["First Name"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeattribute"
+                            }
+                        ],
+                        "nodeKey": [
+                            "label",
+                            "value"
+                        ],
+                        "nodeType": "attribute"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "attr",
+                            "columnToAttrMap": [{
+                                "column": ["#attr"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#attribute"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#LastName"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Last Name"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeattribute"
+                            }
+                        ],
+                        "nodeKey": [
+                            "label",
+                            "value"
+                        ],
+                        "nodeType": "attribute"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "manager",
+                            "columnToAttrMap": [{
+                                "column": ["#manager"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#salesrep"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Manager Name"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typesalesrep"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "salesrep"
+                    }
+                ],
+                "query": "salesForce.salesrep",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#salesrep"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typesalesrep"
+                    },
+                    {
+                        "converter": "LowerCase",
+                        "column": ["Full Name"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "column": ["Employee Number"],
+                        "attr": "employeeNumber"
+                    },
+                    {
+                        "column": ["Full Name"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["Email"],
+                        "attr": "email"
+                    },
+                    {
+                        "column": ["Alias"],
+                        "attr": "alias"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "salesrep",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_stage",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_stage"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#state"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Stage"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Stage"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Stage"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typestate"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "State"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "converted_to",
+                            "columnToAttrMap": [{
+                                "column": ["#converted_to"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#lead"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Lead ID"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typelead"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "lead"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "event",
+                            "columnToAttrMap": [
+                                {
+                                    "column": ["#event"],
+                                    "attr": "relation"
+                                },
+                                {
+                                    "column": ["#created"],
+                                    "attr": "eventname"
+                                }
+                            ],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttday"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Created Date"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["Created Date"],
+                                "attr": "datevalue"
+                            }
+                        ],
+                        "nodeKey": ["label"],
+                        "nodeType": "Day"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_industry",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_industry"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#industry"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Industry"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Industry"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Industry"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeindustry"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Industry"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_businessunit",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_businessunit"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#businessunit"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Business Unit"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Business Unit"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Business Unit"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebusinessunit"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BusinessUnit"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_businessunit",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_businessunit"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#businessunit"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["#productUNKNOWN"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#unknown"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#unknown"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typebusinessunit"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "BusinessUnit"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_country",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_country"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#country"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Billing Country"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Billing Country"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Billing Country"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typecountry"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Country"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_region",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_region"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#region"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Account Geographic Region"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Account Geographic Region"],
+                                "attr": "label"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Account Geographic Region"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeregion"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Region"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "owns_opportunity",
+                            "columnToAttrMap": [{
+                                "column": ["#owns_opportunity"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#salesrep"],
+                                "attr": "type"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Opportunity Owner"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["Opportunity Owner"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typesalesrep"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "salesrep"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#new logo"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#new logo"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#new logo"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MOB"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#MOB"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#mob"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#marketing contribution"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#MIB"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#MIB"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#mib"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "opportunity_flag",
+                            "columnToAttrMap": [{
+                                "column": ["#opportunity_flag"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#flag"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#Marketing Contribution"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#marketing contribution"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeflag"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "Flag"
+                    }
+                ],
+                "query": "salesForce.opp",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#opportunity"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typeopportunity"
+                    },
+                    {
+                        "column": ["Opportunity ID"],
+                        "attr": "uuid"
+                    },
+                    {
+                        "converter": "LowerCase",
+                        "column": ["Opportunity Name"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["License (converted)"],
+                        "attr": "license"
+                    },
+                    {
+                        "column": ["Primary Product Family"],
+                        "attr": "primary_product"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "opportunity",
+                "allowNullKeyElement": false
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "deal_line",
+                            "columnToAttrMap": [{
+                                "column": ["#deal_line"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#deal"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Opportunity ID"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typedeal"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "deal"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": true,
+                            "edgeType": "line_product",
+                            "columnToAttrMap": [{
+                                "column": ["#line_product"],
+                                "attr": "relation"
+                            }],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#product"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Product Code"],
+                                "attr": "uuid"
+                            },
+                            {
+                                "converter": "LowerCase",
+                                "column": ["Oracle Product Name"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typeproduct"
+                            }
+                        ],
+                        "nodeKey": ["uuid"],
+                        "nodeType": "product"
+                    }
+                ],
+                "query": "salesForce.dealsproducts",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#productline"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typeproductline"
+                    },
+                    {
+                        "column": [
+                            "Opportunity ID",
+                            "Product Code"
+                        ],
+                        "attr": "uuid"
+                    },
+                    {
+                        "column": ["Oracle Product Name"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["Total Price (converted)"],
+                        "attr": "amount"
+                    },
+                    {
+                        "column": ["Product Family"],
+                        "attr": "family"
+                    },
+                    {
+                        "column": ["Quantity"],
+                        "attr": "quantity"
+                    }
+                ],
+                "nodeKey": ["uuid"],
+                "nodeType": "productline",
+                "allowNullKeyElement": false
+            }
+        ],
+        "id": "marketing.all"
+    }],
+    "graphModelTempltes": [],
+    "dataSources": [],
+    "dataPreprocessors": [],
+    "dataSinks": []
+}

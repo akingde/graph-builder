@@ -1,0 +1,56 @@
+{	
+	"graphs" : [
+		{
+			"id" : "convUI",
+			"nodes" : [
+				{
+					"nodeType" : "houseMemberType",
+					"nodeKey" : ["memberName"],
+					"allowNullKeyElement" : false,
+					"query" : "houseMember.member",
+					"columnToAttrMap" : [
+						{"column" : ["#houseMemberType"], "attr" : "type"},
+						{"column" : ["memberName"], "attr" : "memberName"},
+						{"column" : ["crownName"], "attr" : "crownName"},
+						{"column" : ["houseHead"], "attr" : "houseHead"},
+						{"column" : ["yearBorn"], "attr" : "yearBorn"},
+						{"column" : ["yearDied"], "attr" : "yearDied"},
+						{"column" : ["reignStart"], "attr" : "reignStart", "converter" : "TimestameToCalendar"},
+						{"column" : ["reignEnd"], "attr" : "reignEnd", "converter" : "TimestameToCalendar"},
+						{"column" : ["crownTitle"], "attr" : "crownTitle"},
+						{"column" : ["memberName"], "attr" : "label", "converter" : "BuildLabel"}
+					],
+					"publicNodes" : []
+				},			    
+				{
+					"nodeType" : "houseMemberType",
+					"nodeKey" : ["memberName"],
+					"allowNullKeyElement" : false,
+					"query" : "houseMember.relation",
+					"columnToAttrMap" : [
+						{"column" : ["#houseMemberType"], "attr" : "type"},
+						{"column" : ["fromMemberName"], "attr" : "memberName"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "houseMemberType",
+							"nodeKey" : ["memberName"],
+							"columnToAttrMap" : [
+								{"column" : ["#houseMemberType"], "attr" : "type"},
+								{"column" : ["toMemberName"], "attr" : "memberName"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["relationType"], "attr" : "relType"},
+									{"column" : ["relationType"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,79 @@
+{	
+	"dataSources" : [
+		{
+			"id" : 	"nfl" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+				"url" : "file://${GRAPH_BUILDER_HOME}/resources/nfl/",
+				"timestampFormat" : "MM/dd/yyyy",
+				"nullValueRepresentation" : ""
+			},			
+			"queries" : [
+				{
+					"id" : "nflbasicStats",
+					"dataSource" : "csv",
+					"dataUniqueId" : ["Player Id"], 
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "Basic_Stats.csv"
+					}
+				}
+			]
+		}
+	],
+	"dataSinks" : [
+		{
+			"id" : "neo4jImport",
+			"javaClass" : "com.tibco.tge.adapter.target.neo4jimport.Neo4jImport",
+			"configuration" : {
+				"database" : "graph.db",
+				"importFileFolder" : "/Users/steven/Documents/GraphBuilderWorking/neo4jNorthWindImport",
+           		"executionFolder" : "/Users/steven/Documents/GitHub/tgdb-migration-tool/TGBuilder/scripts/neo4j",
+				"importCommand" : "import.sh --mode=csv --database=$DATABASE_ID $FILES",
+				"ignoredNodeAttributes" : {
+					"customer" : ["customerID"],
+					"employee" : ["employeeID"],
+					"category" : ["categoryID"],
+					"supplier" : ["supplierID"],
+					"product" : ["productID"],
+					"order" : ["orderID"]
+				},
+				"ignoredEdgeAttributes" : {
+					":REPORTS_TO" : ["relation"],
+					":SUPPLIES" : ["relation"],
+					":PART_OF" : ["relation"],
+					":SOLD" : ["relation"],
+					"pu:PRODUCT" : ["relation"]
+				}
+			}
+		},
+		{
+			"id" : "default",
+			"javaClass" : "com.tibco.tge.adapter.target.DefaultSink",
+			"configuration" : {
+				"outputFolder" : "/Users/steven/Documents/GraphBuilderWorking/dump",
+				"formatForJavaCalendaer" : "yyyy-dd-MM hh:mm:ss"
+			}
+		}
+	],
+	"dataPreprocessors" : [
+		{
+			"id" : "regexStringReplacingDataProcessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.RegexStringReplacingDataProcessor",
+			"configuration" : {
+				"replacements" : { 
+					"*" : {"targetRegex" : "[^a-zA-Z0-9W+]", "replacement" : "_"}
+				}
+			}
+		}
+	],
+	"graphs" : [
+		{
+			"id" : "Default"
+		},
+		{
+			"id" : "nfl"
+		}
+	]
+}

@@ -1,0 +1,120 @@
+{
+	"graphs" : [
+		{
+			"id" : "convUI",
+			"nodes" : [	
+				{
+					"nodeType" : "meetup",
+					"nodeKey" : ["name"],
+					"query" : "meetup.openEvent",
+					"columnToAttrMap" : [
+						{"column" : ["#all"], "attr" : "name"},
+						{"aggregate" : "count()",
+						 "groupBy" : "status", 
+						 "nodeType" : "event", 
+						 "edgeFilter" : "relation/relation/IN",
+						 "attr" : "count"},
+						{"aggregate" : "count()",
+						 "nodeType" : "event", 
+						 "edgeFilter" : "relation/relation/IN",
+						 "attr" : "total_count"}
+					]
+				},
+				{
+					"nodeType" : "category",
+					"nodeKey" : ["categoryId"],
+					"query" : "meetup.openEvent",
+					"columnToAttrMap" : [
+						{"column" : ["categoryId"], "attr" : "categoryId"}
+					]
+				},
+				{
+					"nodeType" : "group",
+					"nodeKey" : ["groupId"],
+					"query" : "meetup.openEvent",
+					"columnToAttrMap" : [
+						{"column" : ["groupId"], "attr" : "groupId"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "location",
+							"nodeKey" : ["locationId"],
+							"columnToAttrMap" : [
+								{"column" : ["city", "country"], "attr" : "locationId", "converter" : "BuildLabel"},
+								{"column" : ["country"], "attr" : "country"},
+								{"column" : ["city"], "attr" : "city"},
+								{"column" : ["group_lon"], "attr" : "lng"},
+								{"column" : ["group_lat"], "attr" : "lat"}
+							],
+							"edges" : [
+								{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#LOCATED_IN"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "category",
+							"nodeKey" : ["categoryId"],
+							"columnToAttrMap" : [
+								{"column" : ["categoryId"], "attr" : "categoryId"}
+							],
+							"edges" : [
+							{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#IN"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "event",
+					"nodeKey" : ["groupId", "name"],
+					"query" : "meetup.openEvent",
+					"lifecycle" : {"key" : "status", "delete" : "deleted"},
+					"columnToAttrMap" : [
+						{"column" : ["groupId"], "attr" : "groupId"},
+						{"column" : ["name"], "attr" : "name"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "group",
+							"nodeKey" : ["groupId"],
+							"columnToAttrMap" : [
+								{"column" : ["groupId"], "attr" : "groupId"}
+							],
+							"edges" : [
+							{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#IN"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "meetup",
+							"nodeKey" : ["name"],
+							"columnToAttrMap" : [
+								{"column" : ["#all"], "attr" : "name"}
+							],
+							"edges" : [
+							{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#IN"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

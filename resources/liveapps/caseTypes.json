@@ -1,0 +1,1425 @@
+[
+    {
+        "id": "1",
+        "name": "OfficeoftheCTOFY18",
+        "label": "Office of the CTO FY18",
+        "applicationId": "33",
+        "applicationName": "Office of the CTO FY18",
+        "applicationInternalName": "FY17Contributions1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Contributor_v7",
+                "label": "Contributor"
+            },
+            {
+                "name": "Location_v1",
+                "label": "Location"
+            },
+            {
+                "name": "Description_v1",
+                "label": "One line Description"
+            }
+        ],
+        "states": [
+            {
+                "id": "12",
+                "label": "Ongoing",
+                "value": "Ongoing_v1"
+            },
+            {
+                "id": "7",
+                "label": "Completed",
+                "value": "Completed"
+            },
+            {
+                "id": "23",
+                "label": "Archived",
+                "value": "Archived_v6",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "WellAlertsManagement1",
+        "label": "Well Alerts Management",
+        "applicationId": "50",
+        "applicationName": "Well Alerts Management",
+        "applicationInternalName": "WellAlertsManagement1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "AlertType1",
+                "label": "Alert Type"
+            },
+            {
+                "name": "SiteName1",
+                "label": "Site Name"
+            }
+        ],
+        "states": [
+            {
+                "id": "10",
+                "label": "Reported",
+                "value": "Reported1"
+            },
+            {
+                "id": "11",
+                "label": "Under Review",
+                "value": "UnderReview1"
+            },
+            {
+                "id": "27",
+                "label": "Action Decision",
+                "value": "ActionDecision1"
+            },
+            {
+                "id": "13",
+                "label": "Monitor",
+                "value": "Monitor1"
+            },
+            {
+                "id": "28",
+                "label": "Keep going",
+                "value": "Keepgoing1"
+            },
+            {
+                "id": "29",
+                "label": "Shutdown",
+                "value": "Shutdown1"
+            },
+            {
+                "id": "7",
+                "label": "Resolved",
+                "value": "Resolved1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "ProductReturns1",
+        "label": "Product Returns",
+        "applicationId": "51",
+        "applicationName": "Product Returns",
+        "applicationInternalName": "ProductReturns1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "ProductName",
+                "label": "Product Name"
+            },
+            {
+                "name": "QuoteNeededbeforerepair_1",
+                "label": "Quote Needed before repair"
+            },
+            {
+                "name": "Status",
+                "label": "Status"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Draft",
+                "value": "Draft"
+            },
+            {
+                "id": "21",
+                "label": "In Qualification",
+                "value": "InQualification_v6"
+            },
+            {
+                "id": "17",
+                "label": "Quote",
+                "value": "Quote"
+            },
+            {
+                "id": "20",
+                "label": "In Repair (local)",
+                "value": "InRepairlocal"
+            },
+            {
+                "id": "18",
+                "label": "In Repair (central)",
+                "value": "InRepaircentral"
+            },
+            {
+                "id": "19",
+                "label": "Quality Control",
+                "value": "QualityControl"
+            },
+            {
+                "id": "22",
+                "label": "Awaiting Payment",
+                "value": "AwaitingPayment1"
+            },
+            {
+                "id": "23",
+                "label": "In Shipping",
+                "value": "Shipping"
+            },
+            {
+                "id": "7",
+                "label": "Returned",
+                "value": "Returned",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "FiberatHome1",
+        "label": "Fiber at Home",
+        "applicationId": "62",
+        "applicationName": "Fiber at Home",
+        "applicationInternalName": "FiberatHome1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Fiberendpointid_v1",
+                "label": "Fiber endpoint id"
+            },
+            {
+                "name": "CustomerName_v1",
+                "label": "Customer Name"
+            },
+            {
+                "name": "CustomerAddress_v1",
+                "label": "Customer Address"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Check in",
+                "value": "Checkin_v1"
+            },
+            {
+                "id": "8",
+                "label": "Fiber Connected",
+                "value": "FiberConnected_v1"
+            },
+            {
+                "id": "13",
+                "label": "Box insalled",
+                "value": "Boxinsalled_v1"
+            },
+            {
+                "id": "11",
+                "label": "Tests Successful",
+                "value": "TestsSuccessful_v1"
+            },
+            {
+                "id": "20",
+                "label": "Tests Failed",
+                "value": "TestsFailed_v1"
+            },
+            {
+                "id": "24",
+                "label": "TV Testing",
+                "value": "TVTesting_v1"
+            },
+            {
+                "id": "28",
+                "label": "Check out",
+                "value": "Checkout_v1"
+            },
+            {
+                "id": "7",
+                "label": "Completed",
+                "value": "Completed",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "CustomerComplaint1",
+        "label": "Customer Complaint",
+        "applicationId": "193",
+        "applicationName": "Customer Complaint",
+        "applicationInternalName": "CustomerComplaint1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Name_v1",
+                "label": "Name"
+            },
+            {
+                "name": "Reference_v1",
+                "label": "Reference"
+            },
+            {
+                "name": "Type_v1",
+                "label": "Type"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Submitted",
+                "value": "Submitted"
+            },
+            {
+                "id": "17",
+                "label": "Being Investigated",
+                "value": "BeingInvestigated"
+            },
+            {
+                "id": "20",
+                "label": "Investigation Complete",
+                "value": "InvestigationComplete"
+            },
+            {
+                "id": "7",
+                "label": "With Customer",
+                "value": "WithCustomer"
+            },
+            {
+                "id": "18",
+                "label": "Resolved",
+                "value": "Resolved"
+            },
+            {
+                "id": "21",
+                "label": "Complete",
+                "value": "Complete",
+                "isTerminal": true
+            },
+            {
+                "id": "241",
+                "label": "Cancelled",
+                "value": "Cancelled_v3",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "CustomeronboardingEnergyUtilities",
+        "label": "Customer on-boarding (Energy & Utilities)",
+        "applicationId": "212",
+        "applicationName": "Customer on-boarding (Energy & Utilities)",
+        "applicationInternalName": "CustomeronboardingEnergyUtilities1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "MeterType_v1",
+                "label": "Meter Type"
+            },
+            {
+                "name": "MeterSerialNumber_v1",
+                "label": "Meter Serial Number"
+            }
+        ],
+        "states": [
+            {
+                "id": "1",
+                "label": "Submitted",
+                "value": "Submitted_v1"
+            },
+            {
+                "id": "34",
+                "label": "Follow Up",
+                "value": "FollowUp_v1"
+            },
+            {
+                "id": "35",
+                "label": "Forwarded",
+                "value": "Forwarded_v1"
+            },
+            {
+                "id": "36",
+                "label": "Investigation",
+                "value": "Investigation_v1"
+            },
+            {
+                "id": "3",
+                "label": "Activated",
+                "value": "Activated_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "4",
+                "label": "Refuse",
+                "value": "Refuse_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "VehiclePurchase",
+        "label": "Vehicle Purchase",
+        "applicationId": "302",
+        "applicationName": "Vehicle Purchase",
+        "applicationInternalName": "VehiclePurchase1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "VIN_v1",
+                "label": "VIN"
+            },
+            {
+                "name": "Model_v1",
+                "label": "Model"
+            },
+            {
+                "name": "Year_v1",
+                "label": "Year"
+            }
+        ],
+        "states": [
+            {
+                "id": "22",
+                "label": "Obtain Approval",
+                "value": "ObtainApproval_v1"
+            },
+            {
+                "id": "3",
+                "label": "Confirm Details",
+                "value": "ConfirmDetails_v1"
+            },
+            {
+                "id": "4",
+                "label": "Make Offer",
+                "value": "MakeOffer_v1"
+            },
+            {
+                "id": "26",
+                "label": "Classic",
+                "value": "Classic_v1"
+            },
+            {
+                "id": "27",
+                "label": "Regular",
+                "value": "Regular_v1"
+            },
+            {
+                "id": "18",
+                "label": "Complete",
+                "value": "Complete_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "GDPRInformation1",
+        "label": "GDPR Information",
+        "applicationId": "332",
+        "applicationName": "GDPR Information",
+        "applicationInternalName": "GDPRInformation1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Tags_v1",
+                "label": "Tags"
+            },
+            {
+                "name": "AccountId_v1",
+                "label": "Account Id"
+            }
+        ],
+        "states": [
+            {
+                "id": "28",
+                "label": "Pending",
+                "value": "Pending_v1"
+            },
+            {
+                "id": "26",
+                "label": "Validated",
+                "value": "Validated_v1"
+            },
+            {
+                "id": "27",
+                "label": "Rejected",
+                "value": "Rejected_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "32",
+                "label": "Data Change Pending",
+                "value": "DataChangePending_v1"
+            },
+            {
+                "id": "33",
+                "label": "Data Change Accepted",
+                "value": "DataChangeAccepted_v1"
+            },
+            {
+                "id": "34",
+                "label": "Data Change Rejected",
+                "value": "DataChangeRejected_v1"
+            },
+            {
+                "id": "36",
+                "label": "Info Report Pending",
+                "value": "InfoReportPending_v1"
+            },
+            {
+                "id": "37",
+                "label": "Info Report Created",
+                "value": "InfoReportCreated_v1"
+            },
+            {
+                "id": "39",
+                "label": "Sharing Pending",
+                "value": "SharingPending_v1"
+            },
+            {
+                "id": "40",
+                "label": "Sharing Authorized",
+                "value": "SharingAuthorized_v1"
+            },
+            {
+                "id": "41",
+                "label": "Sharing Refused",
+                "value": "SharingRefused_v1"
+            },
+            {
+                "id": "29",
+                "label": "Closed",
+                "value": "Closed_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "Customer1",
+        "label": "Customer",
+        "applicationId": "463",
+        "applicationName": "Customer",
+        "applicationInternalName": "Customer1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "CustomerFirstname_v1",
+                "label": "Customer Firstname"
+            },
+            {
+                "name": "CustomerLastname_v1",
+                "label": "Customer Lastname"
+            },
+            {
+                "name": "AccountID_v6",
+                "label": "Account ID",
+                "isIdentifier": true
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Prospect",
+                "value": "Prospect_v1"
+            },
+            {
+                "id": "7",
+                "label": "Onboarded",
+                "value": "Onboarded_v1"
+            },
+            {
+                "id": "8",
+                "label": "Lost",
+                "value": "Lost_v1"
+            },
+            {
+                "id": "10",
+                "label": "Terminated",
+                "value": "Terminated_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "CustomerOnboarding1",
+        "label": "Customer Onboarding",
+        "applicationId": "473",
+        "applicationName": "Customer Onboarding",
+        "applicationInternalName": "CustomerOnboarding1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "CustomerFirstname_v1",
+                "label": "Customer Firstname"
+            },
+            {
+                "name": "CustomerName_v1",
+                "label": "Customer Name"
+            },
+            {
+                "name": "CustomerId_v1",
+                "label": "CustomerId"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Created",
+                "value": "Created"
+            },
+            {
+                "id": "9",
+                "label": "Customer Data Entry",
+                "value": "CustomerDataEntry_v1"
+            },
+            {
+                "id": "8",
+                "label": "Documents Upload",
+                "value": "DocumentsUpload_v1"
+            },
+            {
+                "id": "10",
+                "label": "Documents Check",
+                "value": "DocumentsCheck_v1"
+            },
+            {
+                "id": "20",
+                "label": "Validation",
+                "value": "Validation_v1"
+            },
+            {
+                "id": "7",
+                "label": "Onboarded",
+                "value": "Onboarded_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "11",
+                "label": "Rejected",
+                "value": "Rejected_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "FraudInvestigation1",
+        "label": "Fraud Investigation",
+        "applicationId": "561",
+        "applicationName": "Fraud Investigation",
+        "applicationInternalName": "BlankApplication1",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "CaseTag_v3",
+                "label": "CaseTag"
+            },
+            {
+                "name": "CaseInitiation_v7",
+                "label": "CaseInitiation"
+            },
+            {
+                "name": "CaseSummary_1_v4",
+                "label": "CaseSummary"
+            }
+        ],
+        "states": [
+            {
+                "id": "35",
+                "label": "Created",
+                "value": "Created_v1"
+            },
+            {
+                "id": "27",
+                "label": "Investigating",
+                "value": "Investigating_v1"
+            },
+            {
+                "id": "23",
+                "label": "Referred Up",
+                "value": "ReferredUp_v1"
+            },
+            {
+                "id": "26",
+                "label": "Referred Regulator",
+                "value": "ReferredRegulator_v1"
+            },
+            {
+                "id": "24",
+                "label": "No Fraud",
+                "value": "NoFraud_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "25",
+                "label": "Was Fraud",
+                "value": "WasFraud_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "31",
+                "label": "Inconclusive",
+                "value": "Inconclusive_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "Patterns",
+        "label": "Patterns",
+        "applicationId": "691",
+        "applicationName": "Patterns",
+        "applicationInternalName": "Patterns",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "targetregion_v1",
+                "label": "target region"
+            },
+            {
+                "name": "CaseID_v1",
+                "label": "CaseID",
+                "isIdentifier": true
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Created",
+                "value": "Created"
+            },
+            {
+                "id": "17",
+                "label": "Background Check",
+                "value": "Background Check"
+            },
+            {
+                "id": "18",
+                "label": "Risk Scoring",
+                "value": "Risk Scoring"
+            },
+            {
+                "id": "7",
+                "label": "Approved",
+                "value": "Approved",
+                "isTerminal": true
+            },
+            {
+                "id": "15",
+                "label": "Rejected",
+                "value": "Rejected"
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "CustomerCampaign",
+        "label": "Customer Campaign",
+        "applicationId": "704",
+        "applicationName": "Customer Campaign",
+        "applicationInternalName": "Promotions",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "CampaignName_v1",
+                "label": "Campaign Name"
+            },
+            {
+                "name": "CustomerName_v1",
+                "label": "Customer Name"
+            }
+        ],
+        "states": [
+            {
+                "id": "16",
+                "label": "Campaign",
+                "value": "Campaign_v1"
+            },
+            {
+                "id": "9",
+                "label": "Customers",
+                "value": "Customers_v1"
+            },
+            {
+                "id": "7",
+                "label": "Completed",
+                "value": "Completed",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "CustomerInvestigation",
+        "label": "Supplier Investigation",
+        "applicationId": "721",
+        "applicationName": "Supplier Investigation",
+        "applicationInternalName": "CustomerInvestigation",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "InvestigationID_v1",
+                "label": "Investigation ID",
+                "isIdentifier": true
+            },
+            {
+                "name": "Name_v9",
+                "label": "Name"
+            }
+        ],
+        "states": [
+            {
+                "id": "26",
+                "label": "First",
+                "value": "First_v22"
+            },
+            {
+                "id": "13",
+                "label": "Audit Channel",
+                "value": "AuditChannel_v22"
+            },
+            {
+                "id": "23",
+                "label": "Manual Channel",
+                "value": "ManualChannel_v22"
+            },
+            {
+                "id": "15",
+                "label": "In review",
+                "value": "Inreview_v22"
+            },
+            {
+                "id": "19",
+                "label": "Fraud",
+                "value": "Fraud_v22",
+                "isTerminal": true
+            },
+            {
+                "id": "21",
+                "label": "Not Fraud5",
+                "value": "Not Fraud4",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "AssetMarketPlace1",
+        "label": "AssetMarketPlace",
+        "applicationId": "740",
+        "applicationName": "AssetMarketPlace",
+        "applicationInternalName": "AssetMarketPlace",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "AssetID_v1",
+                "label": "AssetID",
+                "isIdentifier": true
+            },
+            {
+                "name": "Resume_v8",
+                "label": "Resume"
+            },
+            {
+                "name": "Product_v14",
+                "label": "Product"
+            }
+        ],
+        "states": [
+            {
+                "id": "1",
+                "label": "Submitted",
+                "value": "Submitted"
+            },
+            {
+                "id": "24",
+                "label": "Onboard User",
+                "value": "OnboardUser_v11"
+            },
+            {
+                "id": "27",
+                "label": "Add Implementation",
+                "value": "AddImplementation_v12"
+            },
+            {
+                "id": "2",
+                "label": "Review",
+                "value": "Review"
+            },
+            {
+                "id": "3",
+                "label": "Approval",
+                "value": "Approval"
+            },
+            {
+                "id": "4",
+                "label": "Provision",
+                "value": "Provision"
+            },
+            {
+                "id": "5",
+                "label": "Archive",
+                "value": "Archive",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "Opportunity",
+        "label": "Opportunity Tracking",
+        "applicationId": "755",
+        "applicationName": "Opportunity Tracking",
+        "applicationInternalName": "Opportunity",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "OpportunityName_v1",
+                "label": "Opportunity Name"
+            },
+            {
+                "name": "Customer_v1",
+                "label": "Customer"
+            },
+            {
+                "name": "SalesforceId_v1",
+                "label": "Salesforce Id"
+            }
+        ],
+        "states": [
+            {
+                "id": "11",
+                "label": "Data entry",
+                "value": "Data entry"
+            },
+            {
+                "id": "9",
+                "label": "Go-NoGo",
+                "value": "Go-NoGo"
+            },
+            {
+                "id": "30",
+                "label": "Ongoing",
+                "value": "Ongoing"
+            },
+            {
+                "id": "31",
+                "label": "No-Go",
+                "value": "No-Go",
+                "isTerminal": true
+            },
+            {
+                "id": "19",
+                "label": "Won",
+                "value": "Won",
+                "isTerminal": true
+            },
+            {
+                "id": "20",
+                "label": "Loss",
+                "value": "Loss",
+                "isTerminal": true
+            },
+            {
+                "id": "21",
+                "label": "Unqualified",
+                "value": "Unqualified",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "ArticlesReactivation",
+        "label": "Articles Reactivation",
+        "applicationId": "769",
+        "applicationName": "Articles Reactivation",
+        "applicationInternalName": "ArticlesReactivation",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "SupplierId_v1",
+                "label": "Supplier Id"
+            },
+            {
+                "name": "BuyerCode_v1",
+                "label": "Buyer Code"
+            },
+            {
+                "name": "ArticleId_v1",
+                "label": "Article Id"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Created",
+                "value": "Created"
+            },
+            {
+                "id": "10",
+                "label": "Checked",
+                "value": "Checked_v1"
+            },
+            {
+                "id": "56",
+                "label": "Missing Info",
+                "value": "MissingInfo_v7"
+            },
+            {
+                "id": "57",
+                "label": "Does not exist",
+                "value": "Doesnotexist_v7"
+            },
+            {
+                "id": "21",
+                "label": "Card Entry",
+                "value": "CardEntry_v1"
+            },
+            {
+                "id": "32",
+                "label": "With Administrators",
+                "value": "WithAdministrators_v1"
+            },
+            {
+                "id": "52",
+                "label": "With Sector Mgr",
+                "value": "WithSectorMgr_v1"
+            },
+            {
+                "id": "53",
+                "label": "With Category Mgr",
+                "value": "WithCategoryMgr_v1"
+            },
+            {
+                "id": "54",
+                "label": "With Dir Purchase",
+                "value": "WithDirPurchase_v1"
+            },
+            {
+                "id": "34",
+                "label": "Card Processing",
+                "value": "CardProcessing_v1"
+            },
+            {
+                "id": "37",
+                "label": "Completed",
+                "value": "Completed_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "38",
+                "label": "Rejected",
+                "value": "Rejected_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "NPSSurveyLending",
+        "label": "NPS Survey (Lending)",
+        "applicationId": "931",
+        "applicationName": "NPS Survey (Lending)",
+        "applicationInternalName": "NPSSurveyLending",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "NPSID_v2",
+                "label": "NPS ID",
+                "isIdentifier": true
+            },
+            {
+                "name": "Customer_v1",
+                "label": "Customer"
+            },
+            {
+                "name": "Country_v1",
+                "label": "Country"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Created",
+                "value": "Created"
+            },
+            {
+                "id": "16",
+                "label": "Recommendation",
+                "value": "Recommendation_v1"
+            },
+            {
+                "id": "18",
+                "label": "First Appointment",
+                "value": "FirstAppointment_v1"
+            },
+            {
+                "id": "19",
+                "label": "Branch Advisor",
+                "value": "BranchAdvisor_v1"
+            },
+            {
+                "id": "20",
+                "label": "Broker Advisor",
+                "value": "BrokerAdvisor_v1"
+            },
+            {
+                "id": "21",
+                "label": "HSD",
+                "value": "HSD_v1"
+            },
+            {
+                "id": "22",
+                "label": "Mortgage Services",
+                "value": "MortgageServices_v1"
+            },
+            {
+                "id": "23",
+                "label": "Surveys",
+                "value": "Surveys_v1"
+            },
+            {
+                "id": "24",
+                "label": "Sollicitor",
+                "value": "Sollicitor_v1"
+            },
+            {
+                "id": "25",
+                "label": "Track it",
+                "value": "Trackit_v1"
+            },
+            {
+                "id": "26",
+                "label": "Offer",
+                "value": "Offer_v1"
+            },
+            {
+                "id": "27",
+                "label": "Completion",
+                "value": "Completion_v1"
+            },
+            {
+                "id": "28",
+                "label": "Whole Process",
+                "value": "WholeProcess_v1"
+            },
+            {
+                "id": "29",
+                "label": "Overall",
+                "value": "Overall_v1"
+            },
+            {
+                "id": "137",
+                "label": "Review Feedback",
+                "value": "ReviewFeedback_v1"
+            },
+            {
+                "id": "7",
+                "label": "Completed",
+                "value": "Completed",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "CloudStarters_helloWorld1",
+        "label": "CloudStarters_helloWorld",
+        "applicationId": "1025",
+        "applicationName": "CloudStarters_helloWorld",
+        "applicationInternalName": "CloudStarters_helloWorld",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Name_v1",
+                "label": "Name"
+            },
+            {
+                "name": "Surname_v1",
+                "label": "Surname"
+            }
+        ],
+        "states": [
+            {
+                "id": "1",
+                "label": "Created",
+                "value": "Created_v1"
+            },
+            {
+                "id": "2",
+                "label": "Review",
+                "value": "Review_v1"
+            },
+            {
+                "id": "3",
+                "label": "Done",
+                "value": "Done_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "LifeCycleTest",
+        "label": "LifeCycleTest",
+        "applicationId": "1051",
+        "applicationName": "LifeCycleTest",
+        "applicationInternalName": "LifeCycleTest",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Code_v1",
+                "label": "Code"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Created",
+                "value": "Created"
+            },
+            {
+                "id": "7",
+                "label": "Completed",
+                "value": "Completed",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "AcquisitionClient1",
+        "label": "Acquisition Client",
+        "applicationId": "1094",
+        "applicationName": "Acquisition Client",
+        "applicationInternalName": "AcquisitionClient",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Nomduclient_v1",
+                "label": "Nom du client"
+            },
+            {
+                "name": "Age_v1",
+                "label": "Age"
+            },
+            {
+                "name": "Date_1_v1",
+                "label": "Date"
+            }
+        ],
+        "states": [
+            {
+                "id": "1",
+                "label": "Capture des données",
+                "value": "Capturedesdonnes_v1"
+            },
+            {
+                "id": "2",
+                "label": "Collecte documents",
+                "value": "Collectedocuments_v1"
+            },
+            {
+                "id": "3",
+                "label": "Vérification",
+                "value": "Vrification_v1"
+            },
+            {
+                "id": "6",
+                "label": "Terminé",
+                "value": "Termin_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "RiskInvestigation",
+        "label": "Risk Investigation",
+        "applicationId": "1114",
+        "applicationName": "Risk Investigation",
+        "applicationInternalName": "RiskInvestigation",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "CaseTag_v1",
+                "label": "CaseTag"
+            },
+            {
+                "name": "CaseInitiation_v1",
+                "label": "CaseInitiation"
+            },
+            {
+                "name": "CaseSummary_1_v1",
+                "label": "CaseSummary"
+            }
+        ],
+        "states": [
+            {
+                "id": "35",
+                "label": "Created",
+                "value": "Created_v1"
+            },
+            {
+                "id": "27",
+                "label": "Investigating",
+                "value": "Investigating_v1"
+            },
+            {
+                "id": "23",
+                "label": "Referred Up",
+                "value": "ReferredUp_v1"
+            },
+            {
+                "id": "26",
+                "label": "Referred Regulator",
+                "value": "ReferredRegulator_v1"
+            },
+            {
+                "id": "24",
+                "label": "No Fraud",
+                "value": "NoFraud_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "25",
+                "label": "Was Fraud",
+                "value": "WasFraud_v1",
+                "isTerminal": true
+            },
+            {
+                "id": "31",
+                "label": "Inconclusive",
+                "value": "Inconclusive_v1",
+                "isTerminal": true
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "name": "HRJobDescriptions",
+        "label": "HR Job Descriptions",
+        "applicationId": "1169",
+        "applicationName": "HR Job Descriptions",
+        "applicationInternalName": "HRJobDescriptions",
+        "summaryAttributes": [
+            {
+                "name": "state",
+                "label": "State",
+                "isState": true
+            },
+            {
+                "name": "Divison_v1",
+                "label": "Divison"
+            },
+            {
+                "name": "JobGrade_v1",
+                "label": "Job Grade"
+            },
+            {
+                "name": "Region_v1",
+                "label": "Region"
+            }
+        ],
+        "states": [
+            {
+                "id": "6",
+                "label": "Created",
+                "value": "Created"
+            },
+            {
+                "id": "7",
+                "label": "Completed",
+                "value": "Completed",
+                "isTerminal": true
+            }
+        ]
+    }
+]
+

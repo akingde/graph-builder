@@ -1,0 +1,253 @@
+{
+    "graphs": [{
+        "nodes": [
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "child",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttmonth"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Month"],
+                                "attr": "monthvalue"
+                            },
+                            {
+                                "column": ["YearMonth"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["Month"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typettmonth"
+                            }
+                        ],
+                        "nodeKey": ["value"],
+                        "nodeType": "Month"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "child",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttyear"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Year"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["Year"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typettyear"
+                            }
+                        ],
+                        "nodeKey": ["value"],
+                        "nodeType": "Year"
+                    }
+                ],
+                "query": "convUIDynamicData.timeTreeFY",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#ttquarter"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["YearQuarter"],
+                        "attr": "value"
+                    },
+                    {
+                        "column": ["Quarter"],
+                        "attr": "quartervalue"
+                    },
+                    {
+                        "column": ["Year"],
+                        "attr": "yearvalue"
+                    },
+                    {
+                        "column": ["Quarter"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typettquarter"
+                    }
+                ],
+                "nodeKey": ["value"],
+                "nodeType": "Quarter"
+            },
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "fchild",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["#ttmonth"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["Month"],
+                                "attr": "monthvalue"
+                            },
+                            {
+                                "column": ["YearMonth"],
+                                "attr": "value"
+                            }
+                        ],
+                        "nodeKey": ["value"],
+                        "nodeType": "Month"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "fchild",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["FYQuarterYear"],
+                                "attr": "value"
+                            },
+                            {
+                                "column": ["#ttfyear"],
+                                "attr": "type"
+                            },
+                            {
+                                "column": ["FYQuarterYear"],
+                                "attr": "label"
+                            },
+                            {
+                                "column": ["#"],
+                                "attr": "typettfyear"
+                            }
+                        ],
+                        "nodeKey": ["value"],
+                        "nodeType": "FYear"
+                    }
+                ],
+                "query": "convUIDynamicData.timeTreeFY",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#ttfquarter"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["YearFYQuarter"],
+                        "attr": "value"
+                    },
+                    {
+                        "column": ["FYQuarter"],
+                        "attr": "quartervalue"
+                    },
+                    {
+                        "column": ["FYQuarterYear"],
+                        "attr": "yearvalue"
+                    },
+                    {
+                        "column": ["FYQuarter"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typettfquarter"
+                    }
+                ],
+                "nodeKey": ["value"],
+                "nodeType": "FYQuarter"
+            },
+            {
+                "publicNodes": [{
+                    "publicNodes": [],
+                    "edges": [{
+                        "allowDuplicate": false,
+                        "edgeType": "child",
+                        "columnToAttrMap": [],
+                        "perminant": true,
+                        "direction": 2
+                    }],
+                    "columnToAttrMap": [
+                        {
+                            "column": ["#ttmonth"],
+                            "attr": "type"
+                        },
+                        {
+                            "column": ["Month"],
+                            "attr": "monthvalue"
+                        },
+                        {
+                            "column": ["YearMonth"],
+                            "attr": "value"
+                        }
+                    ],
+                    "nodeKey": ["value"],
+                    "nodeType": "Month"
+                }],
+                "query": "convUIDynamicData.timeTreeFY",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["#ttday"],
+                        "attr": "type"
+                    },
+                    {
+                        "column": ["DateName"],
+                        "attr": "label"
+                    },
+                    {
+                        "column": ["YearMonthDay"],
+                        "attr": "value"
+                    },
+                    {
+                        "column": ["YearMonthDay"],
+                        "attr": "datevalue"
+                    },
+                    {
+                        "column": ["#"],
+                        "attr": "typettday"
+                    }
+                ],
+                "nodeKey": ["label"],
+                "nodeType": "Day"
+            }
+        ],
+        "id": "TimeTree"
+    }],
+    "graphModelTempltes": [],
+    "dataSources": [],
+    "dataPreprocessors": [],
+    "dataSinks": []
+}

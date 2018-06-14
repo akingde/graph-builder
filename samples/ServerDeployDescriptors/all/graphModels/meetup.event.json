@@ -1,0 +1,189 @@
+{
+    "graphs": [{
+        "nodes": [
+            {
+                "publicNodes": [
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "In",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 2
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["meetup.utc_offset"],
+                                "attr": "meetup.utc_offset"
+                            },
+                            {
+                                "column": ["meetup.rsvp_limit"],
+                                "attr": "meetup.rsvp_limit"
+                            },
+                            {
+                                "column": ["meetup.venue_visibility"],
+                                "attr": "meetup.venue_visibility"
+                            },
+                            {
+                                "column": ["meetup.visibility"],
+                                "attr": "meetup.visibility"
+                            },
+                            {
+                                "column": ["meetup.maybe_rsvp_count"],
+                                "attr": "meetup.maybe_rsvp_count"
+                            },
+                            {
+                                "column": ["meetup.description"],
+                                "attr": "meetup.description"
+                            },
+                            {
+                                "column": ["meetup.mtime"],
+                                "attr": "meetup.mtime"
+                            },
+                            {
+                                "column": ["meetup.event_url"],
+                                "attr": "meetup.event_url"
+                            },
+                            {
+                                "column": ["meetup.yes_rsvp_count"],
+                                "attr": "meetup.yes_rsvp_count"
+                            },
+                            {
+                                "column": ["meetup.duration"],
+                                "attr": "meetup.duration"
+                            },
+                            {
+                                "column": ["meetup.payment_required"],
+                                "attr": "meetup.payment_required"
+                            },
+                            {
+                                "column": ["meetup.name"],
+                                "attr": "meetup.name"
+                            },
+                            {
+                                "column": ["meetup.id"],
+                                "attr": "meetup.id"
+                            },
+                            {
+                                "column": ["meetup.time"],
+                                "attr": "meetup.time"
+                            },
+                            {
+                                "column": ["meetup.status"],
+                                "attr": "meetup.status"
+                            }
+                        ],
+                        "nodeKey": ["meetup.id"],
+                        "nodeType": "Meetup"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "In",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["category.name"],
+                                "attr": "category.name"
+                            },
+                            {
+                                "column": ["category.id"],
+                                "attr": "category.id"
+                            },
+                            {
+                                "column": ["category.shortname"],
+                                "attr": "category.shortname"
+                            }
+                        ],
+                        "nodeKey": ["category.id"],
+                        "nodeType": "Category"
+                    },
+                    {
+                        "publicNodes": [],
+                        "edges": [{
+                            "allowDuplicate": false,
+                            "edgeType": "In",
+                            "columnToAttrMap": [],
+                            "perminant": true,
+                            "direction": 1
+                        }],
+                        "columnToAttrMap": [
+                            {
+                                "column": ["group.country"],
+                                "attr": "group.country"
+                            },
+                            {
+                                "column": ["group.city"],
+                                "attr": "group.city"
+                            }
+                        ],
+                        "nodeKey": [
+                            "group.country",
+                            "group.city"
+                        ],
+                        "nodeType": "Location"
+                    }
+                ],
+                "query": "meetup.openEvent",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["group.id"],
+                        "attr": "group.id"
+                    },
+                    {
+                        "column": ["group.name"],
+                        "attr": "group.name"
+                    }
+                ],
+                "nodeKey": ["group.id"],
+                "nodeType": "Group"
+            },
+            {
+                "publicNodes": [{
+                    "publicNodes": [],
+                    "edges": [{
+                        "allowDuplicate": false,
+                        "edgeType": "Under",
+                        "columnToAttrMap": [],
+                        "perminant": true,
+                        "direction": 1
+                    }],
+                    "columnToAttrMap": [{
+                        "column": ["#MEETUP_ROOT"],
+                        "attr": "id"
+                    }],
+                    "nodeKey": ["id"],
+                    "nodeType": "Root"
+                }],
+                "query": "meetup.openEvent",
+                "deployBatchNumber": 0,
+                "columnToAttrMap": [
+                    {
+                        "column": ["group.country"],
+                        "attr": "group.country"
+                    },
+                    {
+                        "column": ["group.city"],
+                        "attr": "group.city"
+                    }
+                ],
+                "nodeKey": [
+                    "group.country",
+                    "group.city"
+                ],
+                "nodeType": "Location"
+            }
+        ],
+        "id": "meetup.event2"
+    }],
+    "graphModelTempltes": [],
+    "dataSources": [],
+    "dataPreprocessors": [],
+    "dataSinks": []
+}

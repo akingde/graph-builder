@@ -1,0 +1,455 @@
+{
+    "graphs": [{
+        "nodes": [
+          {
+            "nodeType": "donor",
+            "query": "donors.donors",
+            "deployBatchNumber": 0,
+            "columnToAttrMap": [
+              {"column" : ["#donor"] , "attr" : "type"},
+              {"column" : ["#"] , "attr" : "typedonor"},
+              {"column": ["Donor ID"], "attr": "uuid"},
+              {"column": ["Donor ID"], "attr": "label"},
+              {"column": ["Donor ID"], "attr": "value"},
+
+            ],
+            "nodeKey": ["uuid"],
+
+            "publicNodes": [
+              {
+  							"nodeType" : "Flag",
+  							"nodeKey" : ["uuid"],
+  							"skipCondition" : "\"Yes\".equals(data.get(\"Donor Is Teacher\"))==false",
+  							"columnToAttrMap" : [
+  								{"column" : ["#flag"]  , "attr" : "type"},
+                  {"column" : ["#"]  , "attr" : "typeflag"},
+  								{"column" : ["#teacher"], "attr" : "uuid"},
+  								{"column" : ["#teacher"], "attr" : "label"},
+  								{"column" : ["#teacher"], "attr" : "value"}
+  							],
+  							"edges" : [{
+  								"edgeType" : "donor_flag",
+  								"direction" : 1,
+  								"columnToAttrMap" : [
+  									{"column" : ["#donor_flag"], "attr" : "relation"}
+  								]
+  							}]
+  						}
+            ],
+        },
+        {
+          "nodeType": "project",
+          "query": "donors.projects",
+          "deployBatchNumber": 0,
+          "columnToAttrMap": [
+            {"column" : ["#project"] , "attr" : "type"},
+            {"column" : ["#"] , "attr" : "typeproject"},
+            {"column": ["Project ID"], "attr": "uuid"},
+            {"column": ["Project Title"], "attr": "label"},
+            {"column": ["Project Title"], "attr": "value", "converter" : "LowerCase"},
+            {"column": ["Project Short Description"], "attr": "description"},
+           {"column": ["Project Subject Category Tree"], "attr": "category", "converter" : "LowerCase"},
+           {"column": ["Project Subject Subcategory Tree"], "attr": "subcategory", "converter" : "LowerCase"},
+           {"column": ["Project Grade Level Category"], "attr": "gradelevel", "converter" : "LowerCase"},
+           {"column": ["Project Resource Category"], "attr": "resource_category", "converter" : "LowerCase"},
+           {"column": ["Project Cost"], "attr": "cost"}
+
+
+
+
+          ],
+          "nodeKey": ["uuid"],
+
+          "publicNodes": [
+            {
+              "nodeType" : "school",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#school"]  , "attr" : "type"},
+                {"column" : ["#"]  , "attr" : "typeschool"},
+                {"column" : ["School ID"], "attr" : "uuid"}
+              ],
+              "edges" : [{
+                "edgeType" : "project_school",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#project_school"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "ProjectType",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#projecttype"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["#"]  , "attr" : "typeprojecttype"},
+                {"column" : ["Project Type"], "attr" : "uuid"},
+                {"column" : ["Project Type"], "attr" : "label"},
+                {"column" : ["Project Type"], "attr" : "value", "converter" : "LowerCase" }
+              ],
+              "edges" : [{
+                "edgeType" : "project_type",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#project_type"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "ProjectStatus",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#projectstatus"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["#"]  , "attr" : "typeprojectstatus"},
+                {"column" : ["Project Current Status"], "attr" : "uuid"},
+                {"column" : ["Project Current Status"], "attr" : "label"},
+                {"column" : ["Project Current Status"], "attr" : "value", "converter" : "LowerCase" }
+              ],
+              "edges" : [{
+                "edgeType" : "project_status",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#project_status"], "attr" : "relation"}
+                ]
+              }]
+            },
+
+            {
+              "nodeType" : "Day",
+              "nodeKey" : ["label"],
+              "columnToAttrMap" : [
+                {"column" : ["#ttday"], "attr" : "type"},
+                {"column" : ["Project Posted Date"], "attr" : "label"},
+                {"column" : ["Project Posted Date"], "attr" : "datevalue"}
+              ],
+              "edges" : [{
+                "edgeType" : "event",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#event"], "attr" : "relation"},
+                  {"column" : ["#posted"], "attr" : "eventname"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "Day",
+              "nodeKey" : ["label"],
+              "columnToAttrMap" : [
+                {"column" : ["#ttday"], "attr" : "type"},
+                {"column" : ["Project Expiration Date"], "attr" : "label"},
+                {"column" : ["Project Expiration Date"], "attr" : "datevalue"}
+              ],
+              "edges" : [{
+                "edgeType" : "event",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#event"], "attr" : "relation"},
+                  {"column" : ["#expired"], "attr" : "eventname"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "Day",
+              "nodeKey" : ["label"],
+              "columnToAttrMap" : [
+                {"column" : ["#ttday"], "attr" : "type"},
+                {"column" : ["Project Fully Funded Date"], "attr" : "label"},
+                {"column" : ["Project Fully Funded Date"], "attr" : "datevalue"}
+              ],
+              "edges" : [{
+                "edgeType" : "event",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#event"], "attr" : "relation"},
+                  {"column" : ["#funded"], "attr" : "eventname"}
+                ]
+              }]
+            }
+
+          ]
+      },
+        {
+          "nodeType": "school",
+          "query": "donors.schools",
+          "deployBatchNumber": 0,
+          "columnToAttrMap": [
+            {"column" : ["#school"] , "attr" : "type"},
+            {"column" : ["#"] , "attr" : "typeschool"},
+            {"column": ["School ID"], "attr": "uuid"},
+            {"column": ["School Name"], "attr": "label"},
+            {"column": ["School Name"], "attr": "value", "converter" : "LowerCase"},
+
+          ],
+          "nodeKey": ["uuid"],
+
+          "publicNodes": [
+            {
+              "nodeType" : "MetroType",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#metrotype"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "typemetrotype"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["School Metro Type"], "attr" : "uuid", "converter" : "LowerCase"},
+                {"column" : ["School Metro Type"], "attr" : "label"},
+                {"column" : ["School Metro Type"], "attr" : "value", "converter" : "LowerCase"}
+              ],
+              "edges" : [{
+                "edgeType" : "school_type",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#school_type"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "state",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#geostate"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "typegeostate"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["School State"], "attr" : "uuid","converter" : "LowerCase"},
+                {"column" : ["School State"], "attr" : "label"},
+                {"column" : ["School State"], "attr" : "value", "converter" : "LowerCase"}
+              ],
+              "edges" : [{
+                "edgeType" : "school_state",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#school_state"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "city",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#city"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "typecity"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["School City"], "attr" : "uuid","converter" : "LowerCase"},
+                {"column" : ["School City"], "attr" : "label"},
+                {"column" : ["School City"], "attr" : "value", "converter" : "LowerCase"}
+              ],
+              "edges" : [{
+                "edgeType" : "school_city",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#school_city"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "county",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#county"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "typecounty"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["School County"], "attr" : "uuid","converter" : "LowerCase"},
+                {"column" : ["School County"], "attr" : "label"},
+                {"column" : ["School County"], "attr" : "value", "converter" : "LowerCase"}
+              ],
+              "edges" : [{
+                "edgeType" : "school_county",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#school_county"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "district",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#district"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "typedistrict"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["School District"], "attr" : "uuid","converter" : "LowerCase"},
+                {"column" : ["School District"], "attr" : "label"},
+                {"column" : ["School District"], "attr" : "value", "converter" : "LowerCase"}
+              ],
+              "edges" : [{
+                "edgeType" : "school_district",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#school_district"], "attr" : "relation"}
+                ]
+              }]
+            },
+            {
+              "nodeType" : "zipcode",
+              "nodeKey" : ["uuid"],
+              "columnToAttrMap" : [
+                {"column" : ["#zipcode"]  , "attr" : "type"},
+                {"column" : ["#"] , "attr" : "typezipcode"},
+                {"column" : ["#"] , "attr" : "attribute"},
+                {"column" : ["School Zip"], "attr" : "uuid","converter" : "LowerCase"},
+                {"column" : ["School Zip"], "attr" : "label"},
+                {"column" : ["School Zip"], "attr" : "value", "converter" : "LowerCase"}
+              ],
+              "edges" : [{
+                "edgeType" : "school_zipcode",
+                "direction" : 1,
+                "columnToAttrMap" : [
+                  {"column" : ["#school_zipcode"], "attr" : "relation"}
+                ]
+              }]
+            }
+
+          ],
+      },
+      {
+        "nodeType": "donation",
+        "query": "donors.donations",
+        "deployBatchNumber": 0,
+        "columnToAttrMap": [
+          {"column" : ["#donation"] , "attr" : "type"},
+          {"column" : ["#"] , "attr" : "typedonation"},
+          {"column": ["Donation ID"], "attr": "uuid"},
+          {"column": ["Donation ID"], "attr": "label"},
+          {"column": ["Donation ID"], "attr": "value"},
+          {"column": ["Donation Amount"], "attr": "amount"}
+
+
+        ],
+        "nodeKey": ["uuid"],
+
+        "publicNodes": [
+          {
+            "nodeType" : "Day",
+            "nodeKey" : ["label"],
+            "columnToAttrMap" : [
+              {"column" : ["#ttday"], "attr" : "type"},
+              {"column" : ["Donation Received Date"], "attr" : "label"},
+              {"column" : ["Donation Received Date"], "attr" : "datevalue"}
+            ],
+            "edges" : [{
+              "edgeType" : "event",
+              "direction" : 1,
+              "columnToAttrMap" : [
+                {"column" : ["#event"], "attr" : "relation"},
+                {"column" : ["#received"], "attr" : "eventname"}
+              ]
+            }]
+          },
+          {
+            "nodeType" : "donor",
+            "nodeKey" : ["uuid"],
+            "columnToAttrMap" : [
+              {"column" : ["#donor"]  , "attr" : "type"},
+              {"column" : ["#"] , "attr" : "typedonor"},
+              {"column" : ["Donor ID"], "attr" : "uuid"}
+            ],
+            "edges" : [{
+              "edgeType" : "donor_donation",
+              "direction" : 2,
+              "columnToAttrMap" : [
+                {"column" : ["#donor_donation"], "attr" : "relation"}
+              ]
+            }]
+          },
+          {
+            "nodeType" : "project",
+            "nodeKey" : ["uuid"],
+            "columnToAttrMap" : [
+              {"column" : ["#project"]  , "attr" : "type"},
+              {"column" : ["#"] , "attr" : "typeproject"},
+              {"column" : ["Project ID"], "attr" : "uuid"}
+            ],
+            "edges" : [{
+              "edgeType" : "donation_project",
+              "direction" : 1,
+              "columnToAttrMap" : [
+                {"column" : ["#donation_project"], "attr" : "relation"}
+              ]
+            }]
+          }
+
+        ],
+    },
+    {
+      "nodeType": "resource",
+      "query": "donors.resources",
+      "deployBatchNumber": 0,
+      "columnToAttrMap": [
+        {"column" : ["#resource"] , "attr" : "type"},
+        {"column" : ["#"] , "attr" : "typeresource"},
+        {"column": ["Project ID","Resource Item Name"], "attr": "uuid"},
+        {"column": ["Resource Item Name"], "attr": "label"},
+        {"column": ["Resource Item Name"], "attr": "value"},
+        {"column": ["Resource Unit Price"], "attr": "unit_price"},
+        {"column": ["Resource Quantity"], "attr": "quantity"}
+
+
+      ],
+      "nodeKey": ["uuid"],
+
+      "publicNodes": [
+        {
+          "nodeType" : "item",
+          "nodeKey" : ["uuid"],
+          "columnToAttrMap" : [
+            {"column" : ["#Item"]  , "attr" : "type"},
+            {"column" : ["#"] , "attr" : "typeitem"},
+            {"column" : ["Resource Item Name"], "attr" : "uuid"},
+            {"column" : ["Resource Item Name"], "attr" : "label"},
+            {"column" : ["Resource Item Name"], "attr" : "value", "converter" : "LowerCase"},
+          ],
+          "edges" : [{
+            "edgeType" : "resource_item",
+            "direction" : 2,
+            "columnToAttrMap" : [
+              {"column" : ["#resource_item"], "attr" : "relation"}
+            ]
+          }]
+        },
+        {
+          "nodeType" : "vendor",
+          "nodeKey" : ["uuid"],
+          "columnToAttrMap" : [
+            {"column" : ["#vendor"]  , "attr" : "type"},
+            {"column" : ["#"] , "attr" : "typevendor"},
+            {"column" : ["#"] , "attr" : "attribute"},
+            {"column" : ["Resource Vendor Name"], "attr" : "uuid"},
+            {"column" : ["Resource Vendor Name"], "attr" : "label"},
+            {"column" : ["Resource Vendor Name"], "attr" : "value", "converter" : "LowerCase"},
+          ],
+          "edges" : [{
+            "edgeType" : "resource_vendor",
+            "direction" : 1,
+            "columnToAttrMap" : [
+              {"column" : ["#resource_vendor"], "attr" : "relation"}
+            ]
+          }]
+        },
+        {
+          "nodeType" : "project",
+          "nodeKey" : ["uuid"],
+          "columnToAttrMap" : [
+            {"column" : ["#project"]  , "attr" : "type"},
+            {"column" : ["#"] , "attr" : "typeproject"},
+            {"column" : ["Project ID"], "attr" : "uuid"}
+          ],
+          "edges" : [{
+            "edgeType" : "project_resource",
+            "direction" : 2,
+            "columnToAttrMap" : [
+              {"column" : ["#project_resource"], "attr" : "relation"}
+            ]
+          }]
+        }
+
+      ],
+  }
+    ],
+        "id": "DonorsOrg"
+    }],
+    "graphModelTempltes": [],
+    "dataSources": [],
+    "dataPreprocessors": [],
+    "dataSinks": []
+}

@@ -1,0 +1,163 @@
+{
+	"dataSources" : [
+		{
+			"id" : 	"openFlights" ,
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+				"url" : "file://${GRAPH_BUILDER_HOME}/resources/openFlights/",
+				"timestampFormat" : "MM/dd/yyyy",
+				"nullValueRepresentation" : ""
+			},			
+			"queries" : [
+				{
+					"id" : "airlines",
+					"dataSource" : "openFlights",
+					"dataUniqueId" : ["Airline ID"], 
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "airlines.dat"
+					}
+				},
+				{
+					"id" : "airports",
+					"dataSource" : "openFlights",
+					"dataUniqueId" : ["Airport ID"], 
+					"dataPreprocessors" : [
+					],
+					"properties" : {
+						"filename" : "airports.dat"
+					}
+				},
+				{
+					"id" : "routes",
+					"dataSource" : "openFlights",
+					"dataUniqueId" : ["Airline ID"], 
+					"dataPreprocessors" : [
+						"airlineLookupPreprocessor"
+					],
+					"properties" : {
+						"filename" : "routes.dat"
+					}
+				}
+			]
+		}
+	],
+
+	"dataSinks" : [
+		{
+			"id" : "dgraph",
+			"javaClass" : "com.tibco.tge.adapter.target.dgraphimport.DGraphImportRDF",
+			"configuration" : {
+            	"dgrapgWorkingFolder_bak":"/Users/raph/temp/dgraph2",
+            	"dgrapgWorkingFolder":"/Users/gallardo/Documents/ConvUI/Data/graphbuilder/wf",
+            	"importFileFolder_bak":"/Users/raph/temp/work",
+            	"importFileFolder":"/Users/gallardo/Documents/ConvUI/Data/graphbuilder/import",
+            	"executionFolder_bak" : "/Users/raph/seg-git/conversationalgraph/data-service-v2/scripts",
+           	"executionFolder_bak2" : "/Users/steven/Documents/GitHub/tgdb-migration-tool/TGBuilder/scripts/DGraph",
+		"recycleCommand" : "recycleDgraph.sh",
+            	"importCommand" :"bulkimport.sh $DATA_FILE_PATH $SCHEMA_FILE_PATH",
+				"charReplacement" : {
+					"targetRegex" : "[^A-Za-z0-9]",
+					"replacement" : "_"
+				}
+			}
+		},
+		{
+			"id" : "neo4jImport",
+			"javaClass" : "com.tibco.tge.adapter.target.neo4jimport.Neo4jImport",
+			"configuration" : {
+				"database" : "graph.db",
+				"importFileFolder" : "/Users/steven/Documents/GraphBuilderWorking/neo4jNorthWindImport",
+           		"executionFolder" : "/Users/steven/Documents/GitHub/tgdb-migration-tool/TGBuilder/scripts/neo4j",
+				"importCommand" : "import.sh --mode=csv --database=$DATABASE_ID $FILES",
+				"ignoredNodeAttributes" : {
+				},
+				"ignoredEdgeAttributes" : {
+				}
+			}
+		},
+		{
+			"id" : "tgdbImport",
+			"javaClass" : "com.tibco.tge.adapter.target.tgdbimport.TGDBImportCSV",
+			"configuration" : {
+				"hardRecycle" : "no",
+				"tgdbHome" : "/Users/steven/Applications/tgdb/1.1",
+				"outputFolder" : "/Users/steven/Documents/GraphBuilderWorking/gtfImport",
+				"recycleCommand" : "%s/recycle.sh",
+				"importCommand" : "./tgdb-admin --url tcp://localhost:8222 --uid scott --pwd scott import %s",
+				"attributeTypes" : [
+					"crownName = @type:string",
+					"yearBorn = @type:int",
+					"reignEnd = @type:date",
+					"yearDied = @type:int",
+					"crownTitle = @type:string",
+					"memberName = @type:string",
+					"reignStart = @type:date",
+					"relType = @type:string",
+					"houseHead = @type:boolean",
+					"label = @type:string",
+					"type = @type:string",
+					"relation =@type:string",
+					"airlineID = @type:string",
+					"airportID = @type:string",
+					"name = @type:string",
+					"iataCode = @type:string",
+					"icaoCode = @type:string",
+					"country = @type:string",
+					"airlineActive = @type:boolean",
+					"city = @type:string"
+				]
+			}
+		},
+		{
+			"id" : "websocket",
+			"javaClass" : "com.tibco.tge.adapter.target.websocket.WebSocket",
+			"autoPublish" : "true",
+			"configuration" : {
+				"eventByEvent" : "false",
+				"publishPeriodMilliseconds" : "30000"
+			}
+		},
+		{
+			"id" : "Default",
+			"javaClass" : "com.tibco.tge.adapter.target.DefaultSink",
+			"configuration" : {
+				"outputFolder" : "./resources/demoberlin/output",
+				"attributeTypes" : [
+					"uuid     = @type:string"
+				]
+			}
+		}
+	],
+
+	"dataPreprocessors" : [
+		{
+			"id":"regexStringReplacingDataProcessor",
+			"javaClass":"com.tibco.tge.builder.preprocessors.RegexStringReplacingDataProcessor",
+			"configuration" : {
+				"replacements" : {
+					"*" : {"targetRegex" : "[^a-zA-Z0-9W+]", "replacement" : "_"}
+				}
+			}
+		},
+		{
+			"id" : "charReplacingDataPreprocessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.CharReplacingDataPreprocessor",
+			"configuration" : {
+				"replacements" : {
+					"*" : { " " : "_", "\\" : "_", "\"" : " "}
+				}
+			}
+		}
+	],
+
+	"graphs" : [
+		{
+			"id" : "Default"
+		},
+		{
+			"id" : "routes"
+		}
+	]
+}

@@ -1,0 +1,116 @@
+{	
+	"graphs" : [
+		{
+			"id" : "convUI",
+			"nodes" : [
+			    {
+					"nodeType" : "player",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.nflbasicStats",
+					"columnToAttrMap" : [
+						{"column" : ["#player"],     "attr" : "type"},
+						{"column" : ["Player Id"],   "attr" : "uuid", "converter" : "LowerCase"},
+						{"column" : ["Name"],        "attr" : "label"},
+						{"column" : ["Age"],         "attr" : "age" },
+						{"column" : ["Birth Place"], "attr" : "birthPlace" },						
+						{"column" : ["Birthday"],       "attr" : "birthday"},
+						{"column" : ["Current Status"], "attr" : "currentStatus" },
+						{"column" : ["Current Team"],   "attr" : "currentTeam" },
+						{"column" : ["Experience"],        "attr" : "experience"},
+						{"column" : ["Height (inches)"],   "attr" : "heightInches"},
+						{"column" : ["High School"],       "attr" : "highSchool" },
+						{"column" : ["High School Location"], "attr" : "highSchoolLocation" },						
+						{"column" : ["Number"],       "attr" : "number"},
+						{"column" : ["Years Played"],   "attr" : "yearsPlayed" }
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#FullName"], "attr" : "label"},
+								{"column" : ["Name"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#Weight"], "attr" : "label"},
+								{"column" : ["Weight (lbs)"],  "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "team",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#team"]  , "attr" : "type"},
+								{"column" : ["Current Team"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Current Team"], "attr" : "value", "converter" : "LowerCase"},
+								{"column" : ["Current Team"], "attr" : "label", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#team"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "college",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#college"]  , "attr" : "type"},
+								{"column" : ["College"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["College"], "attr" : "value", "converter" : "LowerCase"},
+								{"column" : ["College"], "attr" : "label"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#college"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "position",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#position"]  , "attr" : "type"},
+								{"column" : ["Position"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Position"], "attr" : "value", "converter" : "LowerCase"},
+								{"column" : ["Position"], "attr" : "label"}
+							],
+							"edges" : [{
+								"edgeType" : "relation",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#play"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,24 @@
+name,label,applicationId,applicationName,applicationInternalName
+OfficeoftheCTOFY18,Office of the CTO FY18,33,Office of the CTO FY18,FY17Contributions1
+WellAlertsManagement1,Well Alerts Management,50,Well Alerts Management,WellAlertsManagement1
+ProductReturns1,Product Returns,51,Product Returns,ProductReturns1
+FiberatHome1,Fiber at Home,62,Fiber at Home,FiberatHome1
+CustomerComplaint1,Customer Complaint,193,Customer Complaint,CustomerComplaint1
+CustomeronboardingEnergyUtilities,Customer on-boarding (Energy & Utilities),212,Customer on-boarding (Energy & Utilities),CustomeronboardingEnergyUtilities1
+VehiclePurchase,Vehicle Purchase,302,Vehicle Purchase,VehiclePurchase1
+GDPRInformation1,GDPR Information,332,GDPR Information,GDPRInformation1
+Customer1,Customer,463,Customer,Customer1
+CustomerOnboarding1,Customer Onboarding,473,Customer Onboarding,CustomerOnboarding1
+FraudInvestigation1,Fraud Investigation,561,Fraud Investigation,BlankApplication1
+Patterns,Patterns,691,Patterns,Patterns
+CustomerCampaign,Customer Campaign,704,Customer Campaign,Promotions
+CustomerInvestigation,Supplier Investigation,721,Supplier Investigation,CustomerInvestigation
+AssetMarketPlace1,AssetMarketPlace,740,AssetMarketPlace,AssetMarketPlace
+Opportunity,Opportunity Tracking,755,Opportunity Tracking,Opportunity
+ArticlesReactivation,Articles Reactivation,769,Articles Reactivation,ArticlesReactivation
+NPSSurveyLending,NPS Survey (Lending),931,NPS Survey (Lending),NPSSurveyLending
+CloudStarters_helloWorld1,CloudStarters_helloWorld,1025,CloudStarters_helloWorld,CloudStarters_helloWorld
+LifeCycleTest,LifeCycleTest,1051,LifeCycleTest,LifeCycleTest
+AcquisitionClient1,Acquisition Client,1094,Acquisition Client,AcquisitionClient
+RiskInvestigation,Risk Investigation,1114,Risk Investigation,RiskInvestigation
+HRJobDescriptions,HR Job Descriptions,1169,HR Job Descriptions,HRJobDescriptions

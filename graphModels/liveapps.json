@@ -1,0 +1,99 @@
+{
+	"graphs" : [
+		{
+			"id" : "LiveApps",
+			"nodes" : [
+
+				{
+					"nodeType" : "application",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "liveapps.casetypes",
+					"columnToAttrMap" : [
+						{"column" : ["#application"],             "attr" : "type"},
+						{"column" : ["applicationId"],           "attr" : "uuid"},
+						{"column" : ["applicationName"],           "attr" : "label"},
+            {"column" : ["applicationName"],           "attr" : "value", "converter" : "LowerCase"}
+					],
+					"publicNodes" : [
+					]
+				},
+        {
+          "nodeType" : "case",
+          "nodeKey" : ["uuid"],
+          "allowNullKeyElement" : false,
+          "query" : "liveapps.cases",
+          "columnToAttrMap" : [
+            {"column" : ["#case"],             "attr" : "type"},
+            {"column" : ["caseReference"],           "attr" : "uuid"},
+            {"column" : ["caseReference"],           "attr" : "label"},
+            {"column" : ["caseReference"],           "attr" : "value", "converter" : "LowerCase"}
+          ],
+          "publicNodes" : [
+            {
+							"nodeType" : "application",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+                {"column" : ["#application"],             "attr" : "type"},
+    						{"column" : ["applicationId"],           "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "createdby",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#case_application"], "attr" : "relation"}
+								]
+							}]
+						},
+            {
+							"nodeType" : "Day",
+							"nodeKey" : ["label"],
+							"columnToAttrMap" : [
+								{"column" : ["#ttday"], "attr" : "type"},
+								{"column" : ["creationTimestamp"], "attr" : "label"},
+								{"column" : ["creationTimestamp"], "attr" : "datevalue"}
+							],
+							"edges" : [{
+								"edgeType" : "event",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#event"], "attr" : "relation"},
+									{"column" : ["#created"], "attr" : "eventname"}
+								]
+							}]
+						}
+          ]
+        },
+        {
+          "nodeType" : "attribute",
+          "nodeKey" : ["label","value"],
+          "allowNullKeyElement" : false,
+          "query" : "liveapps.casesdata",
+          "columnToAttrMap" : [
+            {"column" : ["#attribute"],             "attr" : "type"},
+            {"column" : ["value"],           "attr" : "value", "converter" : "LowerCase"},
+            {"column" : ["label"],           "attr" : "label"}
+          ],
+          "publicNodes" : [
+            {
+							"nodeType" : "case",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+                {"column" : ["#case"],             "attr" : "type"},
+    						{"column" : ["caseReference"],      "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						}
+          ]
+        }
+
+			]
+		}
+	]
+}

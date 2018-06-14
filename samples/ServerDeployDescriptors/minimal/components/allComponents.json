@@ -1,0 +1,42 @@
+{	
+	"dataSources" : [
+		{
+			"id" : 	"houseMember",
+			"javaClass" : "com.tibco.tge.adapter.source.csv.CSVDAO",
+			"configuration" : {
+				"url" : "file://${GRAPH_BUILDER_HOME}/resources/houseMember/"
+			},
+			"queries" : [
+				{
+					"id" : "member",
+					"properties" : {
+						"filename" : "houseMemberData.csv"
+					}
+				}
+			]
+		}
+	],
+	"dataSinks" : [
+		{
+			"id" : "tgdbImport",
+			"javaClass" : "com.tibco.tge.adapter.target.tgdbimport.TGDBImportCSV",
+			"configuration" : {
+				"outputFolder" : "/Users/steven/Documents/GraphBuilderWorking/gtfImport",
+				"tgdbHome" : "/Users/steven/Applications/tgdb/1.1"
+			}
+		}
+	],
+	"dataPreprocessors" : [
+		{
+			"id" : "regexStringReplacingDataProcessor",
+			"javaClass" : "com.tibco.tge.builder.preprocessors.RegexStringReplacingDataProcessor",
+			"configuration" : {
+				"replacements" : { 
+					"*" : {"targetRegex" : "[^a-zA-Z0-9W+]", "replacement" : "_"}
+				}
+			}
+		}
+	],
+	"graphs" : [
+	]
+}

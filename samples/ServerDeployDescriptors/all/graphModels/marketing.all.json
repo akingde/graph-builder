@@ -1,0 +1,1139 @@
+{	
+	"graphs" : [
+		{
+			"id" : "convUI",
+			"nodes" : [
+			    {
+					"nodeType" : "State",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.state",
+					"columnToAttrMap" : [
+						{"column" : ["#state"],             "attr" : "type"},
+						{"column" : ["StateName"],   	"attr" : "uuid"},
+						{"column" : ["StateName"],   			"attr" : "label"},
+						{"column" : ["StateName"],   			"attr" : "value", "converter" : "LowerCase"},
+						{"column" : ["Order"],         		"attr" : "order"}
+						
+					]
+					
+				},
+				{
+					"nodeType" : "FiscalQuarter",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.quarter",
+					"columnToAttrMap" : [
+						{"column" : ["#quarter"],             "attr" : "type"},
+						{"column" : ["FiscalQuarter"],   	"attr" : "uuid"},
+						{"column" : ["FiscalQuarter"],   			"attr" : "label"},
+						{"column" : ["FiscalQuarter"],   			"attr" : "value", "converter" : "LowerCase"},
+						{"column" : ["Order"],         		"attr" : "order"}
+						
+					]
+					
+				},		
+				{
+					"nodeType" : "lead",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.rawlead",
+					"columnToAttrMap" : [
+						{"column" : ["#lead"],             "attr" : "type"},
+						{"column" : ["Lead ID"],           "attr" : "uuid"},
+						{"column" : ["Lead ID"],           "attr" : "label"},
+						{"column" : ["Email"],             "attr" : "Email" },
+						{"column" : ["First Name"],         "attr" : "first_name"},
+						{"column" : ["Last Name"],  		   "attr" : "last_name"}
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "Date",
+							"nodeKey" : ["label"],
+							"columnToAttrMap" : [
+								{"column" : ["#date"], "attr" : "type"},
+								{"column" : ["MCL Date"], "attr" : "label"},
+								{"column" : ["MCL Date"], "attr" : "datevalue"}
+							],
+							"edges" : [{
+								"edgeType" : "stagein",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#stagein"], "attr" : "relation"},
+									{"column" : ["#MCL"], "attr" : "state"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Date",
+							"nodeKey" : ["label"],
+							"columnToAttrMap" : [
+								{"column" : ["#date"], "attr" : "type"},
+								{"column" : ["Create Date"], "attr" : "label"},
+								{"column" : ["Create Date"], "attr" : "datevalue"}
+							],
+							"edges" : [{
+								"edgeType" : "event",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#event"], "attr" : "relation"},
+									{"column" : ["#created"], "attr" : "eventname"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["#ACTIVE"] , "attr" : "uuid"}
+								
+								
+							],
+							
+							"edges" : [{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["Create Date"],"attr" : "since"},
+									{"column" :["#2999-01-01"],"attr" : "to"},
+									{"column" :["#active"],"attr" : "groupname"}
+
+								]
+							}]
+						},
+
+						{
+							"nodeType" : "Date",
+							"nodeKey" : ["label"],
+							"columnToAttrMap" : [
+								{"column" : ["#date"], "attr" : "type"},
+								{"column" : ["MEL Date"], "attr" : "datevalue"},
+								{"column" : ["MEL Date"], "attr" : "label"}
+							],
+							"edges" : [
+								{
+									"edgeType" : "stagein",
+									"direction" : 1,
+									"columnToAttrMap" : [
+										{"column" : ["#stagein"], "attr" : "relation"},
+										{"column" : ["#MEL"], "attr" : "state"}
+										]
+								},
+								{
+									"edgeType" : "stageout",
+									"direction" : 1,
+									"columnToAttrMap" : [
+										{"column" : ["#stageout"], "attr" : "relation"},
+										{"column" : ["#MCL"], "attr" : "state"}
+									]
+							    }
+							]
+						},
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#company"], "attr" : "label"},
+								{"column" : ["Company / Account"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Industry", 
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#industry"], "attr" : "type"},
+								{"column" : ["Industry"], "attr" : "label"},
+								{"column" : ["Industry"]  , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Industry"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "lead_industry",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#lead_industry"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#Status"]   , "attr" : "label"},
+								{"column" : ["Status"]    , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Product",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#product"]    , "attr" : "type"},
+								{"column" : ["Marketing Business Unit"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Marketing Business Unit"], "attr" : "label"},
+								{"column" : ["Marketing Business Unit"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "lead_product",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#lead_product"], "attr" : "relation"}
+								]
+							}]
+						},						
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["Lead Stage"] , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "stage",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#stage"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "data.get(\"MCL Date\")==null",
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["#MCL"] , "attr" : "uuid"}
+								
+							],
+							
+							"edges" : [{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "data.get(\"MEL Date\")!=null",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["MCL Date"],"attr" : "since"},
+									{"column" :["#2999-01-01"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							},{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "data.get(\"MEL Date\")==null",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["MCL Date"],"attr" : "since"},
+									{"column" :["MEL Date"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							}]
+						},
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "(data.get(\"MEL Date\")==null)",
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["#MEL"] , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "(data.get(\"MQL Date Assigned\")!=null)",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["MEL Date"],"attr" : "since"},
+									{"column" :["#2999-01-01"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							},{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "(data.get(\"MQL Date Assigned\")==null)",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["MEL Date"],"attr" : "since"},
+									{"column" :["MQL Date Assigned"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							}]
+						},
+						
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "data.get(\"MQL Date Assigned\")==null",
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["#MQL"] , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "(data.get(\"SAL Date\")!=null)",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["MQL Date Assigned"],"attr" : "since"},
+									{"column" :["#2999-01-01"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							},{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "(data.get(\"SAL Date\")==null)",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["MQL Date Assigned"],"attr" : "since"},
+									{"column" :["SAL Date"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							}]
+						},
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "data.get(\"SAL Date\")==null",
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["#SAL"] , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "data.get(\"SQL Date\")!=null",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["SAL Date"],"attr" : "since"},
+									{"column" :["#2999-01-01"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							},{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"skipCondition" : "data.get(\"SQL Date\")==null",
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["SAL Date"],"attr" : "since"},
+									{"column" :["SQL Date"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							}]
+						},
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "data.get(\"SQL Date\")==null",
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["#SQL"] , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "statehistory",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#statehistory"], "attr" : "relation"},
+									{"column" :["SQL Date"],"attr" : "since"},
+									{"column" :["#2999-01-01"],"attr" : "to"},
+									{"column" :["#stage"],"attr" : "groupname"}
+
+								]
+							}]
+						},
+
+						{
+							"nodeType" : "Source",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#source"], "attr" : "type"},
+								{"column" : ["Lead Source"] , "attr" : "uuid","converter" : "LowerCase"},
+								{"column" : ["Lead Source"] , "attr" : "label"},
+								{"column" : ["Lead Source"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "source",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#source"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Country",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#country"], "attr" : "type"},
+								{"column" : ["Country"] , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Country"] , "attr" : "label"},
+								{"column" : ["Country"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "lead_country",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#lead_country"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Region",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#region"] , "attr" : "type"},
+								{"column" : ["CountryCode Region"]  , "attr" : "uuid","converter" : "LowerCase"},
+								{"column" : ["CountryCode Region"]  , "attr" : "label"},
+								{"column" : ["CountryCode Region"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "lead_region",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#lead_region"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "BDE",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#bde"]  , "attr" : "type"},
+								{"column" : ["BDE Name"], "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "owns_lead",
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#owns_lead"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Campaign",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#campaign"]  , "attr" : "type"},
+								{"column" : ["Campaign Name"], "attr" : "uuid"},
+								{"column" : ["Campaign Name"], "attr" : "label"}
+							],
+							"edges" : [{
+								"edgeType" : "campaign",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#campaign"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "deal",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.rawdeal",
+					"columnToAttrMap" : [
+						{"column" : ["#deal"],             "attr" : "type"},
+						{"column" : ["Opportunity ID"],           "attr" : "uuid"},
+						{"column" : ["Opportunity Name"],           "attr" : "label", "converter" : "LowerCase"},
+						{"column" : ["License (converted)"],           "attr" : "license"},
+						{"column" : ["Primary Product Family"], "attr" : "primary_product"}
+						
+						
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "Date",
+							"nodeKey" : ["label"],
+							"columnToAttrMap" : [
+								{"column" : ["#date"], "attr" : "type"},
+								{"column" : ["Close Date"], "attr" : "label"},
+								{"column" : ["Close Date"], "attr" : "datevalue"}
+							],
+							"edges" : [{
+								"edgeType" : "event",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#event"], "attr" : "relation"},
+									{"column" : ["#closed"], "attr" : "eventname"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "FiscalQuarter",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#quarter"], "attr" : "type"},
+								{"column" : ["Fiscal Quarter"], "attr" : "uuid"},
+								{"column" : ["Fiscal Quarter"], "attr" : "label"},
+								{"column" : ["Fiscal Quarter"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "quarter",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#quarter"], "attr" : "relation"}
+								]
+							}]
+						},
+						
+						
+						{
+							"nodeType" : "Product",
+							"skipCondition" : "data.get(\"Business Unit\")==null",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#product"]    , "attr" : "type"},
+								{"column" : ["Business Unit"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Business Unit"], "attr" : "label"},
+								{"column" : ["Business Unit"], "attr" : "value", "converter" : "LowerCase"}
+							],
+							
+							"edges" : [{
+								"edgeType" : "deal_product",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_product"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Product",
+							"skipCondition" : "data.get(\"Business Unit\")!=null",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#product"]    , "attr" : "type"},
+								{"column" : ["#productUNKNOWN"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["#unknown"], "attr" : "label"},
+								{"column" : ["#unknown"], "attr" : "value"}
+							],
+							
+							"edges" : [{
+								"edgeType" : "deal_product",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_product"], "attr" : "relation"}
+								]
+							}]
+						},						
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["Stage"] , "attr" : "uuid"},
+								{"column" : ["Stage"] , "attr" : "label"},
+								{"column" : ["Stage"] , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "stage",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#stage"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Country",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#country"], "attr" : "type"},
+								{"column" : ["Billing Country"] , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Billing Country"] , "attr" : "label"},
+								{"column" : ["Billing Country"] , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_country",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_country"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Region",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#region"] , "attr" : "type"},
+								{"column" : ["Account Geographic Region"]  , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Account Geographic Region"]  , "attr" : "label"},
+								{"column" : ["Account Geographic Region"]  , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_region",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_region"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Industry",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#industry"] , "attr" : "type"},
+								{"column" : ["Industry"]  , "attr" : "uuid",  "converter" : "LowerCase"},
+								{"column" : ["Industry"]  , "attr" : "label"},
+								{"column" : ["Industry"]  , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_industry",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_industry"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "salesrep",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#salesrep"]  , "attr" : "type"},
+								{"column" : ["Opportunity Owner"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Opportunity Owner"], "attr" : "label"}
+							],
+							"edges" : [{
+								"edgeType" : "owns_deal",
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#owns_deal"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"Yes\".equals(data.get(\"New Logo\"))==false",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#new logo"], "attr" : "uuid"},
+								{"column" : ["#new logo"], "attr" : "label"},
+								{"column" : ["#newlogo"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Sourced Originated\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#MOB"], "attr" : "uuid"},
+								{"column" : ["#MOB"], "attr" : "label"},
+								{"column" : ["#mob"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Sourced Originated\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#Marketing Contribution"], "attr" : "uuid"},
+								{"column" : ["#Marketing Contribution"], "attr" : "label"},
+								{"column" : ["#marketing contribution"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Influenced\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#MIB"], "attr" : "uuid"},
+								{"column" : ["#MIB"], "attr" : "label"},
+								{"column" : ["#mib"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Influenced\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#Marketing Contribution"], "attr" : "uuid"},
+								{"column" : ["#Marketing Contribution"], "attr" : "label"},
+								{"column" : ["#marketing contribution"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "deal_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#deal_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "lead",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#lead"] , "attr" : "type"},
+								{"column" : ["Lead ID"]  , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "converted_to",
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#converted_to"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "opportunity",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.opp",
+					"columnToAttrMap" : [
+						{"column" : ["#opportunity"],             "attr" : "type"},
+						{"column" : ["Opportunity ID"],           "attr" : "uuid"},
+						{"column" : ["Opportunity Name"],           "attr" : "label", "converter" : "LowerCase"},
+						{"column" : ["License (converted)"],           "attr" : "license"},
+						{"column" : ["Primary Product Family"], "attr" : "primary_product"}
+						
+						
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "FiscalQuarter",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#quarter"], "attr" : "type"},
+								{"column" : ["Fiscal Quarter"], "attr" : "uuid"},
+								{"column" : ["Fiscal Quarter"], "attr" : "label"},
+								{"column" : ["Fiscal Quarter"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_quarter",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_quarter"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Date",
+							"nodeKey" : ["label"],
+							"columnToAttrMap" : [
+								{"column" : ["#date"], "attr" : "type"},
+								{"column" : ["Created Date"], "attr" : "label"},
+								{"column" : ["Created Date"], "attr" : "datevalue"}
+							],
+							"edges" : [{
+								"edgeType" : "event",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#event"], "attr" : "relation"},
+									{"column" : ["#created"], "attr" : "eventname"}
+								]
+							}]
+						},
+						
+						{
+							"nodeType" : "Product",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "data.get(\"Business Unit\")==null",
+							"columnToAttrMap" : [
+								{"column" : ["#product"]    , "attr" : "type"},
+								{"column" : ["Business Unit"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Business Unit"], "attr" : "label"},
+								{"column" : ["Business Unit"], "attr" : "value", "converter" : "LowerCase"}
+							],
+							
+							"edges" : [{
+								"edgeType" : "opportunity_product",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_product"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Product",
+							"skipCondition" : "data.get(\"Business Unit\")!=null",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#product"]    , "attr" : "type"},
+								{"column" : ["#productUNKNOWN"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["#unknown"], "attr" : "label"},
+								{"column" : ["#unknown"], "attr" : "value"}
+							],
+							
+							"edges" : [{
+								"edgeType" : "opportunity_product",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_product"], "attr" : "relation"}
+								]
+							}]
+						},						
+						{
+							"nodeType" : "State",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#state"], "attr" : "type"},
+								{"column" : ["Stage"] , "attr" : "uuid"},
+								{"column" : ["Stage"] , "attr" : "label"},
+								{"column" : ["Stage"] , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_stage",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_stage"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Country",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#country"], "attr" : "type"},
+								{"column" : ["Billing Country"] , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Billing Country"] , "attr" : "label"},
+								{"column" : ["Billing Country"] , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_country",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_country"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Region",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#region"] , "attr" : "type"},
+								{"column" : ["Account Geographic Region"]  , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Account Geographic Region"]  , "attr" : "label"},
+								{"column" : ["Account Geographic Region"]  , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_region",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_region"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Industry",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#industry"] , "attr" : "type"},
+								{"column" : ["Industry"]  , "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Industry"]  , "attr" : "label"},
+								{"column" : ["Industry"]  , "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_industry",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_industry"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "salesrep",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#salesrep"]  , "attr" : "type"},
+								{"column" : ["Opportunity Owner"], "attr" : "uuid", "converter" : "LowerCase"},
+								{"column" : ["Opportunity Owner"], "attr" : "label"}
+							],
+							"edges" : [{
+								"edgeType" : "owns_opportunity",
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#owns_opportunity"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"Yes\".equals(data.get(\"New.Logo\"))==false",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#new logo"], "attr" : "uuid"},
+								{"column" : ["#new logo"], "attr" : "label"},
+								{"column" : ["#new logo"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Sourced/Originated\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#MOB"], "attr" : "uuid"},
+								{"column" : ["#MOB"], "attr" : "label"},
+								{"column" : ["#mob"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Sourced Originated\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#Marketing Contribution"], "attr" : "uuid"},
+								{"column" : ["#Marketing Contribution"], "attr" : "label"},
+								{"column" : ["#marketing contribution"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Influenced\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#MIB"], "attr" : "uuid"},
+								{"column" : ["#MIB"], "attr" : "label"},
+								{"column" : ["#mib"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "Flag",
+							"nodeKey" : ["uuid"],
+							"skipCondition" : "\"0\".equals(data.get(\"Marketing Influenced\"))",
+							"columnToAttrMap" : [
+								{"column" : ["#flag"]  , "attr" : "type"},
+								{"column" : ["#Marketing Contribution"], "attr" : "uuid"},
+								{"column" : ["#Marketing Contribution"], "attr" : "label"},
+								{"column" : ["#marketing contribution"], "attr" : "value"}
+							],
+							"edges" : [{
+								"edgeType" : "opportunity_flag",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#opportunity_flag"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "lead",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#lead"] , "attr" : "type"},
+								{"column" : ["Lead ID"]  , "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "converted_to",
+								"direction" : 2,
+								"columnToAttrMap" : [
+									{"column" : ["#converted_to"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "salesrep",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.salesrep",
+					"columnToAttrMap" : [
+						{"column" : ["#salesrep"],              "attr" : "type"},
+						{"column" : ["Full Name"],   "attr" : "uuid", "converter" : "LowerCase"},
+						{"column" : ["Employee Number"],   "attr" : "employeeNumber"},
+						{"column" : ["Full Name"],         "attr" : "label"},
+						{"column" : ["Email"],             "attr" : "email" },
+						{"column" : ["Alias"],             "attr" : "alias" }
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#FirstName"], "attr" : "label"},
+								{"column" : ["First Name"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#LastName"], "attr" : "label"},
+								{"column" : ["Last Name"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "salesrep",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#salesrep"]  , "attr" : "type"},
+								{"column" : ["Manager Name"], "attr" : "uuid", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "manager",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#manager"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				},
+				{
+					"nodeType" : "BDE",
+					"nodeKey" : ["uuid"],
+					"allowNullKeyElement" : false,
+					"query" : "salesForce.user",
+					"columnToAttrMap" : [
+						{"column" : ["#bde"],              "attr" : "type"},
+						{"column" : ["Full Name"],   "attr" : "uuid"},
+						{"column" : ["Employee Number"],   "attr" : "employeeNumber"},
+						{"column" : ["Full Name"],         "attr" : "label"},
+						{"column" : ["Email"],             "attr" : "email" },
+						{"column" : ["Alias"],             "attr" : "alias" }
+					],
+					"publicNodes" : [
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#FirstName"], "attr" : "label"},
+								{"column" : ["First Name"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "attribute",
+							"nodeKey" : ["label","value"],
+							"columnToAttrMap" : [
+								{"column" : ["#attribute"], "attr" : "type"},
+								{"column" : ["#LastName"], "attr" : "label"},
+								{"column" : ["Last Name"],  "attr" : "value", "converter" : "LowerCase"}
+							],
+							"edges" : [{
+								"edgeType" : "attr",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#attr"], "attr" : "relation"}
+								]
+							}]
+						},
+						{
+							"nodeType" : "BDE",
+							"nodeKey" : ["uuid"],
+							"columnToAttrMap" : [
+								{"column" : ["#bde"]  , "attr" : "type"},
+								{"column" : ["Manager ID"], "attr" : "uuid"}
+							],
+							"edges" : [{
+								"edgeType" : "manager",
+								"direction" : 1,
+								"columnToAttrMap" : [
+									{"column" : ["#manager"], "attr" : "relation"}
+								]
+							}]
+						}
+					]
+				}
+			]
+		}
+	]
+}
